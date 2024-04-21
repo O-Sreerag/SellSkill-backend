@@ -3,6 +3,7 @@ import { RecruiterSchema } from '../../database/mongo/schema/recruiter';
 import { RecruiterData } from '../../../entities/recruiter';
 import bcrypt from "bcrypt";
 import { VerifyUser } from '../../../entities/user';
+import { LoginStatus } from '../../../entities/interface';
 
 // Schema
 const entityName = "Recruiter";
@@ -14,45 +15,40 @@ const repository = {
         const mongoObject = new Recruiter(recruiter);
         return mongoObject.save();
     },
-    login: async ({ email, password }: RecruiterData) => {
+    login: async ({ email, password }: RecruiterData): Promise<RecruiterData | LoginStatus> => {
         console.log("recruiter login repository function")
         const loginedUser: any = await Recruiter.findOne({ email });
-        console.log(loginedUser)
-    
-        if (loginedUser) {
-            const passwordVerify = await bcrypt.compare(
-                password,
-                loginedUser?.password
-            );
+        console.log(loginedUser);
         
+        if (loginedUser) {
+            const passwordVerify = await bcrypt.compare(password, loginedUser?.password);
+            
             if (passwordVerify) {
                 if (loginedUser.verified) {
                     console.log("login success");
                     return loginedUser;
                 }
                 console.log("notVerified");
-                return "notverified";
+                return LoginStatus.NotVerified;
             } else {
                 console.log("incorrect password");
-                return "password";
+                return LoginStatus.IncorrectPassword;
             }
         }
-        console.log("user does not exits");
-        return "email";
+        console.log("user does not exist");
+        return LoginStatus.UserNotFound;
     },
-    verifyUser: async ({ email, verifyToken}: VerifyUser) => {
+    verifyUser: async ({ email}: VerifyUser) => {
         console.log("verifying User repository function");
-        console.log(email, verifyToken);
+        console.log(email);
         
         const user = await Recruiter.findOne({ email: email });
         console.log(user)
         if (!user){
             return false;
-        } else if (user.password == verifyToken) {
+        } else {
             await Recruiter.findByIdAndUpdate(user._id, { $set: { verified: true } });
             return true;
-        } else {
-            return false;
         }
     }
 }

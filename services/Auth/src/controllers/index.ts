@@ -1,3 +1,5 @@
+// src/controllers/index.ts
+
 import recruiterControllers from './recruiter';
 import commonControllers from './common';
 import applicantControllers from './applicant'

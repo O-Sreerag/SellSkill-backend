@@ -1,18 +1,37 @@
+// src/entities/interfaces
+
 import { ApplicantData, ApplicantLoginData } from "./applicant";
 import { RecruiterData, RecruiterLoginData } from "./recruiter";
 import { VerifyUser } from "./user";
+
+export enum LoginStatus {
+    Success,
+    IncorrectPassword,
+    NotVerified,
+    UserNotFound,
+}
+
+export enum UserRole {
+    Recruiter = "recruiter",
+    Applicant = "applicant",
+}
+
+export interface JWT {
+    _id: string;
+    role: UserRole;
+}
 
 export interface DependeniciesData {
     usecases: usecaseData;
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
         login({email, password}: RecruiterLoginData): any
-        verifyUser({email, verifyToken}: VerifyUser): any
+        verifyUser({email}: VerifyUser): any
     };
     applicantRepository: {
         add(applicant: ApplicantData): any;
         login({email, password}: ApplicantLoginData): any
-        verifyUser({email, verifyToken}: VerifyUser): any
+        verifyUser({email}: VerifyUser): any
     }
 }
 
@@ -30,7 +49,7 @@ export interface usecaseData {
         execute: ({ email, password}: any) => Promise<any>;
     };
     SendVerificationMail_Usecase: (dependencies: DependeniciesData) => {
-        execute: (email: string, password: string, role: string) => Promise<any>;
+        execute: ({email, role}: VerifyUser) => Promise<any>;
     };
     VerifyUser_Usecase: (dependencies: DependeniciesData) => {
         execute: ( verifyToken: string) => Promise<any>;

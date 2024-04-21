@@ -1,3 +1,5 @@
+// src/controllers/recruiter/addRecruiter.ts
+
 import { Response, Request, NextFunction } from 'express';
 import { DependeniciesData } from '../../entities/interface';
 import bcrypt from 'bcrypt'
@@ -21,7 +23,6 @@ export = (dependencies: DependeniciesData) => {
                 password,
                 isGoogle,
             } = body;
-
             
             const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -1,4 +1,5 @@
 import { DependeniciesData } from "../../entities/interface";
+import { VerifyUser } from "../../entities/user";
 import { sentMail } from "../../utils/nodemailer";
 import { AES, enc } from "crypto-js";
 
@@ -6,19 +7,19 @@ export const SendVerificationMail_Usecase = (
   dependencies: DependeniciesData
 ) => {
 
-  const execute = async (email: string, password: string, role: string) => {
+  const execute = async ({email, role}: VerifyUser) => {
 
     if (email) {
       const secretKey = process.env.CRYPTO_KEY || "";
 
-      const data = { email: email, verifyToken:password, role: role};
+      const data = { email: email, role: role};
 
       const encryptedData = AES.encrypt(
         JSON.stringify(data),
         secretKey
       ).toString();
-
       console.log(encryptedData)
+      
       const encodedData = encodeURIComponent(encryptedData);
       console.log(encodedData)
 

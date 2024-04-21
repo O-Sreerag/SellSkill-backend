@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: career-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: career
+  template:
+    metadata:
+      labels:
+        app: career
+    spec:
+      containers:
+        - name: career
+          image: sreerago/career
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: career-srv
+spec:
+  selector:
+    app: career
+  ports:
+    - name: career
+      protocol: TCP
+      port: 3001
+      targetPort: 3001

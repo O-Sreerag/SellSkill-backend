@@ -25,21 +25,20 @@ export const VerifyUser_Usecase = (dependencies: DependeniciesData) => {
       console.log(decodedData)
       
       const bytes = AES.decrypt(decodedData, secretKey);
-      console.log(bytes)
-      const decryptedString = bytes.toString(enc.Utf8);
-      console.log(decryptedString)
-      const decryptedData: VerifyUser = JSON.parse(decryptedString);
-      console.log(decryptedData)
+      // console.log(bytes)
+      // const decryptedString = bytes.toString(enc.Utf8);
+      // console.log(decryptedString)
+      // const decryptedData: VerifyUser = JSON.parse(decryptedString);
+      // console.log(decryptedData)
 
-      // const { email, verifyToken, role }: VerifyUser = JSON.parse(decryptedData)
-      const { email, verifyToken, role }: VerifyUser = JSON.parse(
+      const { email, role }: VerifyUser = JSON.parse(
         bytes.toString(enc.Utf8)
       );
-      console.log(email, verifyToken, role);
+      console.log(email, role);
 
       return role == "recruiter" 
-        ? recruiterRepository.verifyUser({ verifyToken, email }) 
-        : applicantRepository.verifyUser({ verifyToken, email });
+        ? recruiterRepository.verifyUser({ email }) 
+        : applicantRepository.verifyUser({ email });
     } catch (error) {
       console.error("An error occurred in the execute function:", error);
     }

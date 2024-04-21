@@ -3,6 +3,7 @@ import { ApplicantSchema } from '../../database/mongo/schema/applicant';
 import { ApplicantData } from '../../../entities/applicant';
 import bcrypt from "bcrypt";
 import { VerifyUser } from '../../../entities/user';
+import { LoginStatus } from '../../../entities/interface';
 
 // Schema
 const entityName = "Applicant";
@@ -14,51 +15,41 @@ const repository = {
         const mongoObject = new Applicant(applicant);
         return mongoObject.save();
     },
-    findById: async ( _id: any) => {
-        // const applicant = await Applicant.findById(_id);
-        // return applicant ? applicant : null;
-        return Applicant.findById({ _id })
-    },
-    findByEmail: async ( email: any) => {
-        return Applicant.findOne({ email })
-    },
-    login: async ({ email, password }: ApplicantData) => {
+    login: async ({ email, password }: ApplicantData): Promise<ApplicantData | LoginStatus> => {
+        console.log("recruiter login repository function")
         const loginedUser: any = await Applicant.findOne({ email });
+        console.log(loginedUser);
         
         if (loginedUser) {
-            const passwordVerify = await bcrypt.compare(
-                password,
-                loginedUser?.password
-            );
+            const passwordVerify = await bcrypt.compare(password, loginedUser?.password);
             
             if (passwordVerify) {
                 if (loginedUser.verified) {
-                    console.log(" login success");
+                    console.log("login success");
                     return loginedUser;
                 }
                 console.log("notVerified");
-                return "notverified";
+                return LoginStatus.NotVerified;
             } else {
                 console.log("incorrect password");
-                return "password";
+                return LoginStatus.IncorrectPassword;
             }
         }
-        console.log("user not exits");
-        return "email";
+        console.log("user does not exist");
+        return LoginStatus.UserNotFound;
     },
-    verifyUser: async ({email, verifyToken}: VerifyUser) => {
+    verifyUser: async ({email}: VerifyUser) => {
         console.log("verifying User");
-        console.log(email, verifyToken);
+        console.log(email);
         
-        const user = await Applicant.findOne({email});
+        const user = await Applicant.findOne({ email });
+        console.log(user)
         if (!user){
             return false;
         }
-        else if (user.password == verifyToken) {
+        else {
             await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } });
             return true;
-        } else {
-            return false;
         }
     }
 }

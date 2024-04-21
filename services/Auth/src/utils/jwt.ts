@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken"
-import mongoose from "mongoose"
+// import mongoose from "mongoose"
+import { JWT } from "../entities/interface"
 
-
-export const generateAccessToken=(id:string)=>{
+export const generateAccessToken=({_id, role}: JWT)=>{
 const expiresIn="30m"
-const token= jwt.sign({id}, process.env.JWT_ACCESS_SECRET as jwt.Secret, {expiresIn})
+const token= jwt.sign({_id, role}, process.env.JWT_ACCESS_SECRET as jwt.Secret, {expiresIn})
 console.log("accestoken", token);
  
 return token

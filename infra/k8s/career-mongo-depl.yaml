@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: career-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: career-mongo
+  template:
+    metadata:
+      labels:
+        app: career-mongo
+    spec:
+      containers:
+        - name: career-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: career-mongo-srv
+spec:
+  selector:
+    app: career-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

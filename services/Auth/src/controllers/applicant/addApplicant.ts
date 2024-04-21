@@ -1,6 +1,8 @@
+// src/controllers/applicant/addApplicant.ts
+
 import { Response, Request, NextFunction } from 'express';
 import { DependeniciesData } from '../../entities/interface';
-import axios from 'axios';
+import bcrypt from 'bcrypt'
 
 export = (dependencies: DependeniciesData) => {
 
@@ -10,8 +12,7 @@ export = (dependencies: DependeniciesData) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-
-            console.log("Applicant sign up route")
+            console.log("applicant sign up controller")
 
             const {
                 body = {}
@@ -22,19 +23,13 @@ export = (dependencies: DependeniciesData) => {
                 password,
                 isGoogle,
             } = body;
+            
+            const hashedPassword = await bcrypt.hash(password, 10);
 
-            const user = await Applicant_Signup_Usecase(dependencies).execute({ email, password, isGoogle});
+            const user = await Applicant_Signup_Usecase(dependencies).execute({ email, password: hashedPassword, isGoogle});
             console.log(user)
 
-            // const response = await axios.post('http://sellskill.online/auth/common/sendEmail', {
-            //     email,
-            //     password,
-            //     role: "applicant"
-            // });
-
-            // return response
             res.status(200).json({ message: "Sign up successful, mail has send", user});
-
             next();
         } catch (err) {
             next(err)
