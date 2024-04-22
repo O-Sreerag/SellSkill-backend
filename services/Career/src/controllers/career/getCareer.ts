@@ -12,8 +12,10 @@ export = (dependencies: DependeniciesData) => {
             console.log("Get career controller");
 
             const {
-                params: { id }
+                params: {id}
             } = req;
+
+            console.log("id: ", id)
 
             const result = await Career_Get_Usecase(dependencies).execute(id);
             console.log(result);

@@ -3,6 +3,8 @@
 import { Response, Request, NextFunction } from 'express';
 import { DependeniciesData } from '../../entities/interface';
 import bcrypt from 'bcrypt'
+import { ApplicantCreatedPublisher } from "../../events/publishers/applicantCreatedPublisher";
+import { natsWrapper } from "../../nats-wrapper";
 
 export = (dependencies: DependeniciesData) => {
 
@@ -28,6 +30,15 @@ export = (dependencies: DependeniciesData) => {
 
             const user = await Applicant_Signup_Usecase(dependencies).execute({ email, password: hashedPassword, isGoogle});
             console.log(user)
+
+            await new ApplicantCreatedPublisher(natsWrapper.client).publish({
+                _id: user._id,
+                email: user.email,
+                password: user.password,
+                isGoogle: user.isGoogle,
+                verified: user?.verified || false,
+                status: user?.status || true,
+            });
 
             res.status(200).json({ message: "Sign up successful, mail has send", user});
             next();

@@ -4,7 +4,7 @@ import { DependeniciesData } from '../../entities/interface';
 export = (dependencies: DependeniciesData) => {
 
     const {
-        usecases: { Career_Create_Usecase }
+        usecases: { Career_Delete_Usecase }
     } = dependencies;
 
     return async (req: Request, res: Response, next: NextFunction) => {
@@ -12,12 +12,12 @@ export = (dependencies: DependeniciesData) => {
             console.log("Create career controller");
 
             const {
-                body = {}
+                params: {id}
             } = req;
 
-            const careerData = body; // Assuming career data is passed in the request body
+            console.log("id: ", id)
 
-            const result = await Career_Create_Usecase(dependencies).execute(careerData);
+            const result = await Career_Delete_Usecase(dependencies).execute(id);
             console.log(result);
 
             res.status(200).json({ message: "Career created successfully", result });

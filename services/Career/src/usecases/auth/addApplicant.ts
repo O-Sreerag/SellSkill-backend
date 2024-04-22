@@ -13,7 +13,7 @@ export const Applicant_Signup_Usecase = (dependencies: DependeniciesData) => {
     }
 
     const execute = ({
-        // _id,
+        _id,
         // name,
         email,
         password,
@@ -21,12 +21,12 @@ export const Applicant_Signup_Usecase = (dependencies: DependeniciesData) => {
         // phoneNo,
         // applications,
         // events,
-        // verified,
-        // status,
+        verified,
+        status,
         isGoogle,
     }: ApplicantData) => {
         const applicant = new Applicant({       
-            // _id,
+            _id,
             // name,
             email,
             password,
@@ -34,8 +34,8 @@ export const Applicant_Signup_Usecase = (dependencies: DependeniciesData) => {
             // phoneNo,
             // applications,
             // events,
-            // verified,
-            // status,
+            verified,
+            status,
             isGoogle,
         })
         return applicantRepository.add(applicant)
