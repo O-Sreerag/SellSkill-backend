@@ -5,25 +5,25 @@ import { jwtDecode } from 'jwt-decode';
 export = (dependencies: DependeniciesData) => {
 
     const {
-        usecases: { Career_GetAll_Usecase }
+        usecases: { Application_GetAll_Usecase }
     } = dependencies;
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log("Get all careers controller");
+            console.log("Get all applications controller");
 
             const {
-                query: { recruiter }
+                query: { career }
             } = req;
 
-            const decodedToken: any = jwtDecode(recruiter as string)
+            const decodedToken: any = jwtDecode(career as string)
             console.log("decodedToken: ", decodedToken)
-            const recruiterId = decodedToken?._id
+            const careerId = decodedToken?._id
 
-            const result = await Career_GetAll_Usecase(dependencies).execute(recruiterId);
+            const result = await Application_GetAll_Usecase(dependencies).execute(careerId);
             console.log(result);
 
-            res.status(200).json({ message: "Career retrieved successfully", result });
+            res.status(200).json({ message: "Application retrieved successfully", result });
             next();
         } catch (err) {
             next(err);

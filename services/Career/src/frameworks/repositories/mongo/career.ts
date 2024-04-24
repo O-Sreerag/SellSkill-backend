@@ -24,9 +24,9 @@ const careerRepository = {
         console.log(`Fetching career with ID: ${id}`);
         return Career.findById(id);
     },
-    getAll: async () => {
+    getAll: async (recruiterId: string) => {
         console.log("Fetching all careers");
-        return Career.find();
+        return Career.find({recruiterId});
     }
 };
 

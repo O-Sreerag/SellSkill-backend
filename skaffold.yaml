@@ -24,3 +24,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: sreerago/interview
+      context: services/Interview
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

@@ -17,7 +17,7 @@ export = (dependencies: DependeniciesData) => {
                 query: { recruiter }
             } = req;
             
-            const careerData = body; // Assuming career data is passed in the request body
+            const careerData = body;
             console.log("careerData")
             console.log(careerData)
             console.log("recruiter")

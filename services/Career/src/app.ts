@@ -7,6 +7,6 @@ import dependencies from "./config/dependencies";
 const app = express();
 app.set('trust-proxy',true)
 app.use(json())
-app.use("/career", routes(dependencies)); 
+app.use("/career", routes(dependencies));
 
 export { app };

@@ -2,6 +2,7 @@ import { CareerData } from "./career";
 import { ApplicantData } from "./applicant";
 import { RecruiterData } from "./recruiter";
 import { VerifyUser } from "./common";
+import { ApplicationData } from "./application";
 
 export interface DependeniciesData {
     usecases: usecaseData;
@@ -10,7 +11,14 @@ export interface DependeniciesData {
         update: (id: string, careerData: CareerData) => Promise<any>;
         delete: (id: string) => Promise<any>;
         get: (id: string) => Promise<any>;
-        getAll: () => Promise<any>;
+        getAll: (recruiterId: string) => Promise<any>;
+    };
+    applicationRepository: {
+        create: (applicationData: ApplicationData) => Promise<any>;
+        update: (id: string, applicationData: ApplicationData) => Promise<any>;
+        delete: (id: string) => Promise<any>;
+        get: (id: string) => Promise<any>;
+        getAll: (careerId: string) => Promise<any>;
     };
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
@@ -37,7 +45,24 @@ export interface usecaseData {
         execute: (id: string) => Promise<any>;
     };
     Career_GetAll_Usecase: (dependencies: DependeniciesData) => {
-        execute: () => Promise<any>;
+        execute: (recruiterId: string) => Promise<any>;
+    };
+
+    // Application
+    Application_Create_Usecase: (dependencies: DependeniciesData) => {
+        execute: (applicationData: ApplicationData) => Promise<any>;
+    };
+    Application_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, careerData: ApplicationData) => Promise<any>;
+    };
+    Application_Delete_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string) => Promise<any>;
+    };
+    Application_Get_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string) => Promise<any>;
+    };
+    Application_GetAll_Usecase: (dependencies: DependeniciesData) => {
+        execute: (careerId: string) => Promise<any>;
     };
 
     // Auth

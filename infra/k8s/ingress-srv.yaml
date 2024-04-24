@@ -30,3 +30,10 @@ spec:
                 name: career-srv
                 port:
                   number: 3001
+          - path: /interview/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: interview-srv
+                port:
+                  number: 3002

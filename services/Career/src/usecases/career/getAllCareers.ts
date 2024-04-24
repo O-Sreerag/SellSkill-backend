@@ -11,8 +11,8 @@ export const Career_GetAll_Usecase = (dependencies: DependeniciesData) => {
         console.log('The Career repository should exist in dependencies');
     }
 
-    const execute = () => {
-        return careerRepository.getAll();
+    const execute = (recruiterId: string) => {
+        return careerRepository.getAll(recruiterId);
     };
 
     return {
