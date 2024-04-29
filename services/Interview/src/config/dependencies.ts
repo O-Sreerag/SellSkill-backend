@@ -1,9 +1,9 @@
-// import usecases from '../usecases';
-// import repositories from '../frameworks/repositories/mongo';
+import usecases from '../usecases';
+import repositories from '../frameworks/repositories/mongo';
 
-// console.log("reposotories:", repositories)
+console.log("reposotories:", repositories)
 
-// export = {
-//     usecases,
-//     ...repositories
-// }
+export = {
+    usecases,
+    ...repositories
+}

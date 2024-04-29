@@ -37,6 +37,7 @@ export const CareerSchema: Schema<CareerDoc> = new mongoose.Schema(
       // ref: 'recruiter'
     },
     posting_title: {
+      type: String,
     },
     salary: {
       type: Number,

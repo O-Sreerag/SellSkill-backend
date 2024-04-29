@@ -1,4 +1,4 @@
-export interface CareerData {
+export interface InterviewData {
     _id?: string;
     recruiterId?: string;
     host?: string;
@@ -11,7 +11,7 @@ export interface CareerData {
     duration?: string;
 }
 
-export class Career {
+export class Interview {
     _id?: string;
     recruiterId?: string;
     host?: string;
@@ -34,7 +34,7 @@ export class Career {
         date,
         time,
         duration,
-    }: CareerData) {
+    }: InterviewData) {
         this._id = _id;
         this.recruiterId = recruiterId;
         this.host = host;
