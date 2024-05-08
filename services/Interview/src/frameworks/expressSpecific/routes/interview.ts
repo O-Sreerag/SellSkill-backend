@@ -1,6 +1,7 @@
 import express from "express";
 import { interviewControllers } from "../../../controllers";
 import { DependeniciesData } from "../../../entities/interface";
+import middlewares from "../../../middlewares"
 
 export = (dependencies: DependeniciesData) => {
     const router = express.Router();
@@ -12,11 +13,15 @@ export = (dependencies: DependeniciesData) => {
         getAllInterviewsController
     } = interviewControllers(dependencies);
 
-    router.route('/create').post(createInterviewController);
-    router.route('/update/:id').put(updateInterviewController);
-    router.route('/delete/:id').delete(deleteInterviewController);
-    router.route('/get/:id').get(getInterviewController);
-    router.route('/getall').get(getAllInterviewsController);
+    const {
+        verifyTokenMiddleWare,
+    } = middlewares;
+
+    router.route('/create').post(verifyTokenMiddleWare, createInterviewController);
+    router.route('/update/:id').put(verifyTokenMiddleWare, updateInterviewController);
+    router.route('/delete/:id').delete(verifyTokenMiddleWare, deleteInterviewController);
+    router.route('/get/:id').get(verifyTokenMiddleWare, getInterviewController);
+    router.route('/getall').get(verifyTokenMiddleWare, getAllInterviewsController);
 
     return router;
 };

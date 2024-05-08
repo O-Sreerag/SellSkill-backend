@@ -2,79 +2,65 @@ import mongoose, { Schema, Document } from "mongoose";
 
 interface ApplicationDoc extends Document {
     _id?: string;
-    qualification: string[];
-    contact: number;
-    email: string;
-    name: string;
-    preferred_location: string;
-    resume: string;
-    skill_set: string[];
-    notice_period: number;
-    experience: string;
-    expected_ctc: number;
-    current_ctc: number;
-    current_location: string;
-    grad_year: Date;
-    gender: string;
-    current_employer: string;
-    dob: Date;
+    applicantId?: string;
+    careerId?:string;
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone_no?: string;
+    dob?: Date;
+    gender?: string;
+    current_location?: string;
+    current_employer?: string;
+    current_ctc?: number;
+    experience?: number;
+    grad_year?: Date;
+    notice_period?: number;
+    expected_ctc?: number;
+    address?: string;
+    skill_set?: string[];
+    qualifications?: string[];
+    resume?: string;
 }
 
 export const ApplicationSchema: Schema<ApplicationDoc> = new mongoose.Schema(
     {
-        qualification: {
-            type: [String],
+        applicantId: {
+            type: String,
+            // type: mongoose.Schema.Types.ObjectId,
+            // ref: 'applicant'
+        },
+        careerId: {
+            type: String,
+            // type: mongoose.Schema.Types.ObjectId,
+            // ref: 'career'
+        },
+        first_name: {
+            type: String,
             required: true,
         },
-        contact: {
-            type: Number,
+        last_name: {
+            type: String,
             required: true,
         },
         email: {
             type: String,
             required: true,
         },
-        name: {
+        phone_no: {
             type: String,
             required: true,
         },
-        preferred_location: {
-            type: String,
-            required: true,
-        },
-        resume: {
-            type: String,
-            required: true,
-        },
-        skill_set: {
-            type: [String],
-            required: true,
-        },
-        notice_period: {
-            type: Number,
-            required: true,
-        },
-        experience: {
-            type: String,
-            required: true,
-        },
-        expected_ctc: {
-            type: Number,
-            required: true,
-        },
-        current_ctc: {
-            type: Number,
-            required: true,
-        },
-        current_location: {
-            type: String,
-            required: true,
-        },
-        grad_year: {
+        dob: {
             type: Date,
             required: true,
         },
         gender: {
+            type: String,
+            enum: ['fulltime', 'parttime', 'contract'],
+            required: true,
+        },
+        current_location: {
             type: String,
             required: true,
         },
@@ -82,8 +68,40 @@ export const ApplicationSchema: Schema<ApplicationDoc> = new mongoose.Schema(
             type: String,
             required: true,
         },
-        dob: {
+        current_ctc: {
+            type: Number,
+            required: true,
+        },
+        experience: {
+            type: Number,
+            required: true,
+        },
+        grad_year: {
             type: Date,
+            required: true,
+        },
+        notice_period: {
+            type: Number,
+            required: true,
+        },
+        expected_ctc: {
+            type: Number,
+            required: true,
+        },
+        address: {
+            type: String,
+            required: true,
+        },
+        skill_set: {
+            type: [String],
+            required: true,
+        },
+        qualifications: {
+            type: [String],
+            required: true,
+        },
+        resume: {
+            type: String,
             required: true,
         },
     }

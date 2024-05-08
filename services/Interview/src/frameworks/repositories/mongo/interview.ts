@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { InterviewSchema } from '../../database/mongo/schema/interview';
 import { InterviewData } from '../../../entities/interview';
+import { ComformForInterview } from '../../../entities/common';
 
 // Schema
 const entityName = "Interview";
@@ -27,7 +28,21 @@ const interviewRepository = {
     getAll: async (recruiterId: string) => {
         console.log("Fetching all interviews");
         return Interview.find({recruiterId});
+    },
+    comformForInterview: async ({ email, interviewId, job_type, role, }: ComformForInterview) => {
+        console.log("Comform for interview repository function");
+        console.log(email, interviewId, job_type, role)
+        
+        const interview = await Interview.findOne({ _id: interviewId });
+        console.log(interview)
+        if (!interview){
+            return false;
+        } else {
+            await Interview.findByIdAndUpdate(interview._id, { $push: { comformedEmails: email } });
+            return true;
+        }
     }
+
 };
 
 export default interviewRepository;

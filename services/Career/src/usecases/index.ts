@@ -6,6 +6,7 @@ import { Career_Delete_Usecase } from "./career/deleteCareer";
 import { Career_Update_Usecase } from "./career/updateCareer";
 import { Career_Get_Usecase } from "./career/getCareer";
 import { Career_GetAll_Usecase } from "./career/getAllCareers";
+import { Career_GetApplicants_Usecase } from "./career/getApplicants";
 
 // auth
 import { Applicant_Signup_Usecase } from "./auth/addApplicant"
@@ -24,6 +25,7 @@ export default {
     Career_Delete_Usecase,
     Career_Get_Usecase,
     Career_GetAll_Usecase,
+    Career_GetApplicants_Usecase,
 
     // Application
     Application_Create_Usecase,

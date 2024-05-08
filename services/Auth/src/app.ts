@@ -7,6 +7,6 @@ import dependencies from "./config/dependencies";
 const app = express();
 app.set('trust-proxy',true)
 app.use(json())
-app.use("/auth", routes(dependencies)); 
+app.use("/auth", routes(dependencies));
 
 export { app };

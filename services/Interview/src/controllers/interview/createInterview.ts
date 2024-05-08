@@ -8,24 +8,41 @@ export = (dependencies: DependeniciesData) => {
         usecases: { Interview_Create_Usecase }
     } = dependencies;
 
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (req: any, res: Response, next: NextFunction) => {
         try {
             console.log("Create interview controller");
 
             const {
                 body = {},
-                query: { recruiter }
             } = req;
-            
+
             const interviewData = body;
             console.log("interviewData")
             console.log(interviewData)
-            console.log("recruiter")
-            console.log(recruiter)
-            
-            const decodedToken: any = jwtDecode(recruiter as string)
-            console.log("decodedToken: ", decodedToken)
-            interviewData.recruiterId = decodedToken?._id
+
+            const recruiterId = req?.userId
+            console.log("recruiterId:", recruiterId)
+            interviewData.recruiterId = recruiterId
+
+            let host, team, candidate_email, candidates_emails
+
+            if (interviewData.eventType == "one_on_one") {
+                host = interviewData.emails[0]
+                candidate_email = interviewData.emails[1]
+            } else if (interviewData.eventType == "group") {
+                host = interviewData.emails[0]
+                candidate_email = interviewData.emails.slice(1)
+            } else if (interviewData.eventType == "collective") {
+                team = interviewData.emails.slice(0, -1)
+                candidates_emails = interviewData.emails[interviewData.emails.length - 1]
+            }
+
+            // Remove emails field and add host, team, candidate_email, candidates_emails
+            delete interviewData.emails;
+            interviewData.host = host;
+            interviewData.team = team;
+            interviewData.candidate_email = candidate_email;
+            interviewData.candidates_emails = candidates_emails;
 
             const result = await Interview_Create_Usecase(dependencies).execute(interviewData);
             console.log(result);

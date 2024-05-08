@@ -21,18 +21,22 @@ export = (dependencies: DependeniciesData) => {
             } = req;
 
             const {
+                name,
                 email,
                 password,
                 isGoogle,
             } = body;
+
+            console.log(name, email, password, isGoogle)
             
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            const user = await Recruiter_Signup_Usecase(dependencies).execute({ email, password: hashedPassword, isGoogle});
+            const user = await Recruiter_Signup_Usecase(dependencies).execute({ name, email, password: hashedPassword, isGoogle});
             console.log(user)
 
             await new RecruiterCreatedPublisher(natsWrapper.client).publish({
                 _id: user._id,
+                name: user.name,
                 email: user.email,
                 password: user.password,
                 isGoogle: user.isGoogle,

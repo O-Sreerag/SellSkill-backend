@@ -1,6 +1,7 @@
 import express from "express";
 import { careerControllers } from "../../../controllers";
 import { DependeniciesData } from "../../../entities/interface";
+import middlewares from "../../../middlewares"
 
 export = (dependencies: DependeniciesData) => {
     const router = express.Router();
@@ -9,14 +10,20 @@ export = (dependencies: DependeniciesData) => {
         updateCareerController,
         deleteCareerController,
         getCareerController,
-        getAllCareersController
+        getAllCareersController,
+        getApplicantsController,
     } = careerControllers(dependencies);
+    
+    const {
+        verifyTokenMiddleWare,
+    } = middlewares;
 
-    router.route('/create').post(createCareerController);
-    router.route('/update/:id').put(updateCareerController);
-    router.route('/delete/:id').delete(deleteCareerController);
-    router.route('/get/:id').get(getCareerController);
-    router.route('/getall').get(getAllCareersController);
+    router.route('/create').post(verifyTokenMiddleWare, createCareerController);
+    router.route('/update/:id').put(verifyTokenMiddleWare, updateCareerController);
+    router.route('/delete/:id').delete(verifyTokenMiddleWare, deleteCareerController);
+    router.route('/get/:id').get(verifyTokenMiddleWare, getCareerController);
+    router.route('/getall').get(verifyTokenMiddleWare, getAllCareersController);
+    router.route('/getApplicants/:id').get(verifyTokenMiddleWare, getApplicantsController);
 
     return router;
 };

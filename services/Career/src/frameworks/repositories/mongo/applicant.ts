@@ -26,7 +26,16 @@ const repository = {
             await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } });
             return true;
         }
-    }
+    },
+    getApplicants: async(applicantIds: string[]) => {
+        console.log(`Geting all applicants in career with Id: ${applicantIds}`);
+
+        const objectIds = applicantIds.map(id => new mongoose.Types.ObjectId(id));
+        const applicants = await Applicant.find({ _id: { $in: objectIds } });
+
+        console.log("Found applicants:", applicants);
+        return applicants;
+    },
 }
 
 export default repository

@@ -2,6 +2,7 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface RecruiterDoc extends Document {
   _id?: string;
+  name?: string;
   email: string;
   password: string;
   phoneNo?: number;
@@ -16,8 +17,12 @@ interface RecruiterDoc extends Document {
 export const RecruiterSchema: Schema<RecruiterDoc> = new mongoose.Schema(
   {
     _id: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
     },
     email: {
       type: String,

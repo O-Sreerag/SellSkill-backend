@@ -27,6 +27,7 @@ export interface DependeniciesData {
     applicantRepository: {
         add(applicant: ApplicantData): any;
         verifyUser({email}: VerifyUser): any
+        getApplicants: (applicantIds: string[]) => Promise<any>;
     }
 }
 
@@ -74,5 +75,9 @@ export interface usecaseData {
     };
     VerifyUser_Usecase: (dependencies: DependeniciesData) => {
         execute: ( verifyToken: string) => Promise<any>;
+    };
+
+    Career_GetApplicants_Usecase: (dependencies: DependeniciesData) => { 
+        execute: (applicantIds: string[]) => Promise<any>;
     };
 }

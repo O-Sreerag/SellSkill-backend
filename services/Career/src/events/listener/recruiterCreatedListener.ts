@@ -5,19 +5,19 @@ import dependencies from "../../config/dependencies";
 
 export class RecruiterCreatedListener extends Listener<RecruiterCreatedEvent> {
   subject: Subjects.RecruiterCreated = Subjects.RecruiterCreated;
-  queueGroupName = "queueGroupName";
+  queueGroupName = "career";
 
   async onMessage(data: RecruiterCreatedEvent["data"], msg: Message) {
-    const { _id, email, password, isGoogle, verified, status } = data;
-    console.log("Event data! recieved in CAREER service: ",  _id, email, password, isGoogle, verified, status)
+    const { _id, name,  email, password, isGoogle, verified, status } = data;
+    console.log("Event data! recieved in CAREER service: ",  _id, name, email, password, isGoogle, verified, status)
 
     try {
-        const savedRecruiter = Recruiter_Signup_Usecase(dependencies).execute({ _id, email, password, isGoogle, verified, status})        
+        const savedRecruiter = Recruiter_Signup_Usecase(dependencies).execute({ _id, name, email, password, isGoogle, verified, status})        
         console.log("recruiter saved in CAREER service", savedRecruiter)
 
         msg.ack();
         console.log("message acked @");
-        
+
     } catch (error) {
       console.log(error);
     }

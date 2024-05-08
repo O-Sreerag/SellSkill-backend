@@ -14,6 +14,7 @@ export const Recruiter_Signup_Usecase = (dependencies: DependeniciesData) => {
 
     const execute = ({
         _id,
+        name,
         email,
         password,
         // phoneNo,
@@ -26,6 +27,7 @@ export const Recruiter_Signup_Usecase = (dependencies: DependeniciesData) => {
     }: RecruiterData) => {
         const recruiter = new Recruiter({       
             _id,
+            name,
             email,
             password,
             // phoneNo,

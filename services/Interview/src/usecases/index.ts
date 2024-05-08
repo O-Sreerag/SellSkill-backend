@@ -12,6 +12,9 @@ import { Applicant_Signup_Usecase } from "./auth/addApplicant"
 import { Recruiter_Signup_Usecase } from "./auth/addRecruiter"
 import { VerifyUser_Usecase } from "./auth/verifyUser";
 
+import { SendVerificationMail_Usecase } from "./common/sendVerifyMail";
+import { ComformForInterview_Usecase } from "./common/comformForInterview";
+
 export default {
     // Interview
     Interview_Create_Usecase,
@@ -19,9 +22,13 @@ export default {
     Interview_Delete_Usecase,
     Interview_Get_Usecase,
     Interview_GetAll_Usecase,
+    ComformForInterview_Usecase,
 
     // Auth
     Applicant_Signup_Usecase,
     Recruiter_Signup_Usecase,
     VerifyUser_Usecase,
+
+    // common
+    SendVerificationMail_Usecase,
 }

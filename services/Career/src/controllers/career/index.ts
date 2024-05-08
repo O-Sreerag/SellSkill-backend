@@ -5,6 +5,7 @@ import updateCareerController from './updateCareer';
 import deleteCareerController from './deleteCareer';
 import getCareerController from './getCareer';
 import getAllCareersController from './getAllCareers';
+import getApplicantsController from './getApplicants';
 
 export = (dependencies: any) => {
     return {
@@ -13,6 +14,6 @@ export = (dependencies: any) => {
         deleteCareerController: deleteCareerController(dependencies),
         getCareerController: getCareerController(dependencies),
         getAllCareersController: getAllCareersController(dependencies),
-
+        getApplicantsController: getApplicantsController(dependencies),
     }
 }

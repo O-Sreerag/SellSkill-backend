@@ -5,25 +5,23 @@ interface CareerDoc extends Document {
   recruiterId?: string;
 
   posting_title?: string;
-  salary?: number;
-  contact_name?: string;
+  industry?: string;
+  location?: string;
+  salary_min?: number;
+  salary_max?: number;
+  workExp_min?: number;
+  workExp_max?: number;
   job_type?: string;
   opening_status?: string;
-  industry?: string;
-  work_exp?: number;
   date_opened?: Date;
   target_date?: Date;
-  revenue_per_person?: number; 
+  contact_name?: string;
   no_of_positions?: number;
 
-  // required_skills?: string[];
-  // requirements?: string[];
-  // responsibilities?: string[];
-  // benefits?: string[];
-  required_skills?: string;
-  requirements?: string;
-  responsibilities?: string;
-  benefits?: string;
+  job_description?: string[];
+  required_skills?: string[];
+  responsibilities?: string[];
+  benefits?: string[];
 
   applicants?: string[];
   url?: string;
@@ -39,11 +37,23 @@ export const CareerSchema: Schema<CareerDoc> = new mongoose.Schema(
     posting_title: {
       type: String,
     },
-    salary: {
+    industry: {
+      type: String,
+    },
+    location: {
+      type: String,
+    },
+    salary_min: {
       type: Number,
     },
-    contact_name: {
-      type: String,
+    salary_max: {
+      type: Number,
+    },
+    workExp_min: {
+      type: Number,
+    },
+    workExp_max: {
+      type: Number,
     },
     job_type: {
       type: String,
@@ -51,48 +61,30 @@ export const CareerSchema: Schema<CareerDoc> = new mongoose.Schema(
     opening_status: {
       type: String,
     },
-    industry: {
-      type: String,
-    },
-    work_exp: {
-      type: Number,
-    },
     date_opened: {
       type: Date,
     },
     target_date: {
       type: Date,
     },
-    revenue_per_person: {
-      type: Number,
+    contact_name: {
+      type: String,
     },
     no_of_positions: {
       type: Number,
     },
-    // required_skills: [{
-    //   type: String,
-    // }],
-    // requirements: [{
-    //   type: String,
-    // }],
-    // responsibilities: [{
-    //   type: String,
-    // }],
-    // benefits: [{
-    //   type: String,
-    // }],
-    required_skills: {
+    job_description: [{
       type: String,
-    },
-    requirements: {
+    }],
+    required_skills: [{
       type: String,
-    },
-    responsibilities: {
+    }],
+    responsibilities: [{
       type: String,
-    },
-    benefits: {
+    }],
+    benefits: [{
       type: String,
-    },
+    }],
     applicants: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'applicant',

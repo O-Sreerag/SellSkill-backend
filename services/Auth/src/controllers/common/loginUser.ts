@@ -18,7 +18,7 @@ export = (dependencies: DependeniciesData) => {
             let loginResult = await Recruiter_Login_Usecase(dependencies).execute({ email, password });
             console.log("Recruiter login result:", loginResult);
             let role = UserRole.Recruiter
-            
+
             if (!loginResult || loginResult === LoginStatus.UserNotFound) {
                 console.log("user not found at recruiter repo!! going to applicant repo")
 
@@ -28,7 +28,7 @@ export = (dependencies: DependeniciesData) => {
                 role = UserRole.Applicant
             }
 
-            switch (loginResult) {   
+            switch (loginResult) {
                 case LoginStatus.IncorrectPassword:
                     res.status(401).json({ error: "Invalid Password" });
                     break;
@@ -44,7 +44,7 @@ export = (dependencies: DependeniciesData) => {
                     break;
                 default:
                     console.log(loginResult)
-                    const token = generateAccessToken({_id: loginResult._id, role: role});
+                    const token = generateAccessToken({ _id: loginResult._id, role: role });
                     res.status(200).json({ message: "Login successful", user: loginResult, token });
             }
         } catch (error) {

@@ -14,7 +14,7 @@ export const Applicant_Signup_Usecase = (dependencies: DependeniciesData) => {
 
     const execute = ({
         // _id,
-        // name,
+        name,
         email,
         password,
         // image,
@@ -27,7 +27,7 @@ export const Applicant_Signup_Usecase = (dependencies: DependeniciesData) => {
     }: ApplicantData) => {
         const applicant = new Applicant({       
             // _id,
-            // name,
+            name,
             email,
             password,
             // image,

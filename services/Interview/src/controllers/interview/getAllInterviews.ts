@@ -8,17 +8,10 @@ export = (dependencies: DependeniciesData) => {
         usecases: { Interview_GetAll_Usecase }
     } = dependencies;
 
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (req: any, res: Response, next: NextFunction) => {
         try {
             console.log("Get all interviews controller");
-
-            const {
-                query: { recruiter }
-            } = req;
-
-            const decodedToken: any = jwtDecode(recruiter as string)
-            console.log("decodedToken: ", decodedToken)
-            const recruiterId = decodedToken?._id
+            const recruiterId = req?.userId
 
             const result = await Interview_GetAll_Usecase(dependencies).execute(recruiterId);
             console.log(result);

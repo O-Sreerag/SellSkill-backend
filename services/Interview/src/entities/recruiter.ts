@@ -1,6 +1,7 @@
 export interface RecruiterData {
     _id?:string;
     email: string;
+    name?: string;
     password: string;
     phoneNo?: number;
     url?: string;
@@ -14,6 +15,7 @@ export interface RecruiterData {
 export class Recruiter {
     _id?:string;
     email: string;
+    name?: string;
     password: string;
     phoneNo?: number;
     url?: string;
@@ -25,6 +27,7 @@ export class Recruiter {
     
     constructor({
         _id,
+        name,
         email,
         password,
         phoneNo,
@@ -37,6 +40,7 @@ export class Recruiter {
     }: RecruiterData) {
         this._id = _id
         this.email = email
+        this.name = name
         this.password = password
         this.phoneNo = phoneNo
         this.url = url

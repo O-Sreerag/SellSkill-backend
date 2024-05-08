@@ -1,7 +1,7 @@
 import { InterviewData } from "./interview";
 import { ApplicantData } from "./applicant";
 import { RecruiterData } from "./recruiter";
-import { VerifyUser } from "./common";
+import { VerifyUser, SendVerificationEmail, ComformForInterview } from "./common";
 
 export interface DependeniciesData {
     usecases: usecaseData;
@@ -11,6 +11,7 @@ export interface DependeniciesData {
         delete: (id: string) => Promise<any>;
         get: (id: string) => Promise<any>;
         getAll: (recruiterId: string) => Promise<any>;
+        comformForInterview: ({ email, job_type, interviewId, role }: ComformForInterview) => Promise<any>;
     };
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
@@ -39,6 +40,9 @@ export interface usecaseData {
     Interview_GetAll_Usecase: (dependencies: DependeniciesData) => {
         execute: (recruiterId: string) => Promise<any>;
     };
+    ComformForInterview_Usecase: (dependencies: DependeniciesData) => {
+        execute: (verificationData: string) => any;
+    };
 
     // Auth
     Recruiter_Signup_Usecase: (dependencies: DependeniciesData) => {
@@ -49,5 +53,10 @@ export interface usecaseData {
     };
     VerifyUser_Usecase: (dependencies: DependeniciesData) => {
         execute: ( verifyToken: string) => Promise<any>;
+    };
+
+    // common
+    SendVerificationMail_Usecase: (dependencies: DependeniciesData) => {
+        execute: ({job_type, host, team, candidate_email, candidates_emails, interviewId}: SendVerificationEmail) => Promise<any>;
     };
 }

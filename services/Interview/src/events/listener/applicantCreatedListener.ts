@@ -6,7 +6,7 @@ import dependencies from "../../config/dependencies";
 export class ApplicantCreatedListener extends Listener<ApplicantCreatedEvent> {
     
   subject: Subjects.ApplicantCreated = Subjects.ApplicantCreated;
-  queueGroupName = "queueGroupName";
+  queueGroupName = "interview";
 
   async onMessage(data: ApplicantCreatedEvent["data"], msg: Message) {
     const { _id, email, password, isGoogle, verified, status } = data;

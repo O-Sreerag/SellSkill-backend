@@ -1,77 +1,90 @@
 export interface ApplicationData {
     _id?: string;
-    qualification: string[];
-    contact: number;
-    email: string;
-    name: string;
-    preferred_location: string;
-    resume: string;
-    skill_set: string[];
-    notice_period: number;
-    experience: string;
-    expected_ctc: number;
-    current_ctc: number;
-    current_location: string;
-    grad_year: Date;
-    gender: string;
-    current_employer: string;
-    dob: Date;
+    applicantId?: string;
+    careerId?:string;
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone_no?: string;
+    dob?: Date;
+    address?: string;
+    gender?: string;
+    current_location?: string;
+    current_employer?: string;
+    current_ctc?: number;
+    experience?: number;
+    grad_year?: Date;
+    notice_period?: number;
+    expected_ctc?: number;
+    skill_set?: string[];
+    qualifications?: string[];
+    resume?: string;
 }
 
 export class Application {
     _id?: string;
-    qualification: string[];
-    contact: number;
-    email: string;
-    name: string;
-    preferred_location: string;
-    resume: string;
-    skill_set: string[];
-    notice_period: number;
-    experience: string;
-    expected_ctc: number;
-    current_ctc: number;
-    current_location: string;
-    grad_year: Date;
-    gender: string;
-    current_employer: string;
-    dob: Date;
+    applicantId?: string;
+    careerId?:string;
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone_no?: string;
+    dob?: Date;
+    address?: string;
+    gender?: string;
+    current_location?: string;
+    current_employer?: string;
+    current_ctc?: number;
+    experience?: number;
+    grad_year?: Date;
+    notice_period?: number;
+    expected_ctc?: number;
+    skill_set?: string[];
+    qualifications?: string[];
+    resume?: string;
 
     constructor({
         _id,
-        qualification,
-        contact,
+        applicantId,
+        careerId,
+        first_name,
+        last_name,
         email,
-        name,
-        preferred_location,
-        resume,
-        skill_set,
-        notice_period,
-        experience,
-        expected_ctc,
-        current_ctc,
-        current_location,
-        grad_year,
-        gender,
-        current_employer,
+        phone_no,
         dob,
+        address,
+        gender,
+        current_location,
+        current_employer,
+        current_ctc,
+        experience,
+        grad_year,
+        notice_period,
+        expected_ctc,
+        skill_set,
+        qualifications,
+        resume,
+
     }: ApplicationData) {
         this._id = _id;
-        this.qualification = qualification;
-        this.contact = contact;
+        this.applicantId = applicantId;
+        this.careerId = careerId;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.email = email;
-        this.name = name;
-        this.preferred_location = preferred_location;
-        this.resume = resume;
-        this.skill_set = skill_set;
-        this.notice_period = notice_period;
-        this.experience = experience;
-        this.expected_ctc = expected_ctc;
-        this.current_ctc = current_ctc;
-        this.current_location = current_location;
-        this.grad_year = grad_year;
-        this.gender = gender;
-        this.current_employer = current_employer;
+        this.phone_no = phone_no;
         this.dob = dob;
+        this.address = address;
+        this.gender = gender;
+        this.current_location = current_location;
+        this.current_employer = current_employer;
+        this.current_ctc = current_ctc;
+        this.expected_ctc = expected_ctc;
+        this.experience = experience;
+        this.grad_year = grad_year;
+        this.notice_period = notice_period;
+        this.skill_set = skill_set;
+        this.qualifications = qualifications;
+        this.resume = resume;
     }
 }

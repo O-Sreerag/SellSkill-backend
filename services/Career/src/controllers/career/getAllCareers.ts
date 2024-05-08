@@ -1,6 +1,5 @@
 import { Response, Request, NextFunction } from 'express';
 import { DependeniciesData } from '../../entities/interface';
-import { jwtDecode } from 'jwt-decode';
 
 export = (dependencies: DependeniciesData) => {
 
@@ -8,25 +7,25 @@ export = (dependencies: DependeniciesData) => {
         usecases: { Career_GetAll_Usecase }
     } = dependencies;
 
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (req: any, res: any, next: NextFunction) => {
         try {
             console.log("Get all careers controller");
-
-            const {
-                query: { recruiter }
-            } = req;
-
-            const decodedToken: any = jwtDecode(recruiter as string)
-            console.log("decodedToken: ", decodedToken)
-            const recruiterId = decodedToken?._id
+            const recruiterId = req.userId
 
             const result = await Career_GetAll_Usecase(dependencies).execute(recruiterId);
             console.log(result);
-
-            res.status(200).json({ message: "Career retrieved successfully", result });
+            
+            res.status(200).json({ message: "All Careers retrieved successfully", result });
             next();
         } catch (err) {
             next(err);
         }
     };
 };
+
+// const {
+//     query: { recruiter }
+// } = req;
+// const decodedToken: any = jwtDecode(recruiter as string)
+// console.log("decodedToken: ", decodedToken)
+// const recruiterId = decodedToken?._id

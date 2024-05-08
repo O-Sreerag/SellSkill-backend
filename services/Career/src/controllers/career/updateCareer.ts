@@ -16,7 +16,7 @@ export = (dependencies: DependeniciesData) => {
                 params: {id}
             } = req;
 
-            const careerData = body; // Assuming career data is passed in the request body
+            const careerData = body;
 
             const result = await Career_Update_Usecase(dependencies).execute(id, careerData);
             console.log(result);
