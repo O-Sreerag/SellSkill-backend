@@ -10,7 +10,8 @@ export = (dependencies: DependeniciesData) => {
         updateInterviewController,
         deleteInterviewController,
         getInterviewController,
-        getAllInterviewsController
+        getAllInterviewsController,
+        getAllFromEmailcontroller,
     } = interviewControllers(dependencies);
 
     const {
@@ -22,6 +23,7 @@ export = (dependencies: DependeniciesData) => {
     router.route('/delete/:id').delete(verifyTokenMiddleWare, deleteInterviewController);
     router.route('/get/:id').get(verifyTokenMiddleWare, getInterviewController);
     router.route('/getall').get(verifyTokenMiddleWare, getAllInterviewsController);
+    router.route('/getallFromEmail').get(verifyTokenMiddleWare, getAllFromEmailcontroller);
 
     return router;
 };

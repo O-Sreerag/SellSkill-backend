@@ -15,8 +15,12 @@ const repository = {
         const mongoObject = new Applicant(applicant);
         return mongoObject.save();
     },
+    get: async (id: string) => {
+        console.log(`Fetching applicant with ID: ${id}`);
+        return Applicant.findById(id);
+    },
     login: async ({ email, password }: ApplicantData): Promise<ApplicantData | LoginStatus> => {
-        console.log("recruiter login repository function")
+        console.log("applicant login repository function")
         const loginedUser: any = await Applicant.findOne({ email });
         console.log(loginedUser);
         
@@ -51,7 +55,17 @@ const repository = {
             await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } });
             return true;
         }
-    }
+    },
+    getAll: async () => {
+        console.log("Fetching all applicants repository");
+        return Applicant.find({});
+    },
+    block: async (id: string) => {
+        console.log("Block applicant repository");
+        const user = await Applicant.findOne({ _id: id});
+        const status = user?.status
+        return await Applicant.findByIdAndUpdate(id, { $set: { status: !status }});
+    },
 }
 
 export default repository

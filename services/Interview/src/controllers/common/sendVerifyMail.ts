@@ -20,6 +20,7 @@ export = (dependencies: DependeniciesData) => {
       console.log("job_type, host, team, candidate_email, candidates_emails, interviewId")
       console.log(job_type, host, team, candidate_email, candidates_emails, interviewId )
       const verification = await SendVerificationMail_Usecase(dependencies).execute({ job_type, host, team, candidate_email, candidates_emails, interviewId });
+      console.log("verification: ", verification)
 
       if (!verification) {
         res.status(400).json({ error: "An error occurred while sending the email" });

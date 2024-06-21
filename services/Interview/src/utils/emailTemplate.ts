@@ -1,6 +1,6 @@
 
 
-const emailTemplate=(link: string)=>{
+const emailTemplate=(link: string, url: string)=>{
     return(`
    
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; margin: auto; background-color: #ffffff;">
@@ -17,6 +17,7 @@ const emailTemplate=(link: string)=>{
           <a href="${link}" style="display: inline-block; padding: 12px 24px; background-color: #333333; color: #ffffff; text-decoration: none; border-radius: 4px; font-size: 16px;">Verify Email</a>
         </p>
         <p style="font-size: 16px; line-height: 22px; color: #333333;">If you didn't request this verification, you can safely ignore this email.</p>
+        <p style="font-size: 16px; line-height: 22px; color: #333333;">${url}</p>
       </td>
     </tr>
     <tr>

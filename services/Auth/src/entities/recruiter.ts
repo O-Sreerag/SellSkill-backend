@@ -1,12 +1,20 @@
 export interface RecruiterData {
-    _id?:string;
+    _id?: string;
     name?: string;
     email: string;
     password: string;
     phoneNo?: number;
     url?: string;
     jobRoles?: string[];
-    profile?: string;
+    profile?: {
+        companyName: string;
+        industry: string;
+        headquarters: string;
+        ceo: string;
+        founded: string;
+        employees: string;
+        revenue: string;
+    };
     verified?: boolean;
     status?: boolean;
     isGoogle: boolean;
@@ -19,22 +27,30 @@ export interface RecruiterLoginData {
 }
 
 export class Recruiter {
-    _id?:string;
+    _id?: string;
     email: string;
     name?: string;
     password: string;
     phoneNo?: number;
     url?: string;
     jobRoles?: string[];
-    profile?: string;
+    profile?: {
+        companyName: string;
+        industry: string;
+        headquarters: string;
+        ceo: string;
+        founded: string;
+        employees: string;
+        revenue: string;
+    };
     verified?: boolean;
     status?: boolean;
     isGoogle: boolean;
-    
+
     constructor({
         _id,
         email,
-        name, 
+        name,
         password,
         phoneNo,
         url,

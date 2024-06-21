@@ -24,7 +24,7 @@ export const SendVerificationMail_Usecase = (
       console.log(encodedData)
 
       const subject = "Confirm Your Email";
-      const verificationLink = `http://sellskill.online/auth/common/verify-user?code=${encodedData}`;
+      const verificationLink = `http://localhost:5173/verify-email?code=${encodedData}`;
 
       return sentMail(email, subject, verificationLink);
     } else {

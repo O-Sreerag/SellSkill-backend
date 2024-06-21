@@ -21,7 +21,7 @@ export = (dependencies: DependeniciesData) => {
     router.route('/create').post(verifyTokenMiddleWare, createCareerController);
     router.route('/update/:id').put(verifyTokenMiddleWare, updateCareerController);
     router.route('/delete/:id').delete(verifyTokenMiddleWare, deleteCareerController);
-    router.route('/get/:id').get(verifyTokenMiddleWare, getCareerController);
+    router.route('/get/:id').get(getCareerController);
     router.route('/getall').get(verifyTokenMiddleWare, getAllCareersController);
     router.route('/getApplicants/:id').get(verifyTokenMiddleWare, getApplicantsController);
 

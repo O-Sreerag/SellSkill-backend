@@ -10,17 +10,19 @@ export = (dependencies: DependeniciesData) => {
         updateApplicationController,
         deleteApplicationController,
         getApplicationController,
-        getAllApplicationsController
+        getAllApplicationsController,
+        changeStatusController
     } = applicationControllers(dependencies);
     const {
         verifyTokenMiddleWare,
     } = middlewares;
 
     router.route('/create').post(verifyTokenMiddleWare, createApplicationController);
-    router.route('/update/:id').put(updateApplicationController);
-    router.route('/delete/:id').delete(deleteApplicationController);
-    router.route('/get/:id').get(getApplicationController);
-    router.route('/getall').get(getAllApplicationsController);
+    router.route('/update/:id').put(verifyTokenMiddleWare, updateApplicationController);
+    router.route('/delete/:id').delete(verifyTokenMiddleWare, deleteApplicationController);
+    router.route('/get/:id').get(verifyTokenMiddleWare, getApplicationController);
+    router.route('/getall').get(verifyTokenMiddleWare, getAllApplicationsController);
+    router.route('/changeStatus').put(verifyTokenMiddleWare, changeStatusController)
 
     return router;
 };

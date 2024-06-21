@@ -1,5 +1,10 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
+const CareerSchema: Schema = new Schema({
+  id: { type: String, required: true },
+  status: { type: String, required: true },
+});
+
 interface ApplicantDoc extends Document {
   _id?: string;
   name?: string;
@@ -12,6 +17,10 @@ interface ApplicantDoc extends Document {
   verified?: boolean;
   status?: boolean;
   isGoogle: boolean;
+  careers?: {
+    id: string;
+    status: string;
+  }[];
 }
 
 export const ApplicantSchema: Schema<ApplicantDoc> = new mongoose.Schema(
@@ -49,11 +58,15 @@ export const ApplicantSchema: Schema<ApplicantDoc> = new mongoose.Schema(
     },
     status: {
       type: Boolean,
+      default: false,
     },
     isGoogle: {
       type: Boolean,
       required: true,
     },
+    careers: {
+      type: [CareerSchema],
+    }
   },
   // {
   //   toJSON: {

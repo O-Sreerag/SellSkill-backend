@@ -14,6 +14,8 @@ interface InterviewDoc extends Document {
   time?: string;
   duration?: string;
   comformedEmails?: string[];
+  conformStatusOnApplicant?: string;
+  conformStatusOnRecruiter?: string;
 }
 
 export const InterviewSchema: Schema<InterviewDoc> = new mongoose.Schema(
@@ -58,5 +60,13 @@ export const InterviewSchema: Schema<InterviewDoc> = new mongoose.Schema(
     comformedEmails: [{
       type: String,
     }],
+    conformStatusOnApplicant: {
+      type: String,
+      default: "pending",
+    },
+    conformStatusOnRecruiter: {
+      type: String,
+      default: "pending",
+    },
   }
 );

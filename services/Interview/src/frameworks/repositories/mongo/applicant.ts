@@ -13,6 +13,10 @@ const repository = {
         const mongoObject = new Applicant(applicant);
         return mongoObject.save();
     },
+    get: async (id: string) => {
+        console.log(`Fetching applicant with ID: ${id}`);
+        return Applicant.findById(id);
+    },
     verifyUser: async ({email}: VerifyUser) => {
         console.log("verifying User");
         console.log(email);

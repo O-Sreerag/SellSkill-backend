@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import emailTemplate from "./emailTemplate"
-export const sentMail = (emailTemplateOption: string, email: string, subject: string, link: string) => {
+export const sentMail = (emailTemplateOption: string, email: string, subject: string, link: string, url: string, encodedData: string) => {
   console.log("sending mail util")
   console.log("process.env.NODEMAILER_EMAIL: ", process.env.NODEMAILER_EMAIL)
   let mailTransporter = nodemailer.createTransport({
@@ -14,7 +14,7 @@ export const sentMail = (emailTemplateOption: string, email: string, subject: st
     from: process.env.NODEMAILER_EMAIL,
     to: email,
     subject: subject,
-    html: emailTemplate(link),
+    html: emailTemplate(link, url),
   };
 
   mailTransporter.sendMail(details, (err) => {

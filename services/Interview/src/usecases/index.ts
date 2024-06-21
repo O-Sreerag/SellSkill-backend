@@ -6,6 +6,7 @@ import { Interview_Delete_Usecase } from "./interview/deleteInterview";
 import { Interview_Update_Usecase } from "./interview/updateInterview";
 import { Interview_Get_Usecase } from "./interview/getInterview";
 import { Interview_GetAll_Usecase } from "./interview/getAllInterviews";
+import { Interview_GetAllFromEmail_Usecase } from "./interview/getAllFromEmail";
 
 // auth
 import { Applicant_Signup_Usecase } from "./auth/addApplicant"
@@ -23,6 +24,7 @@ export default {
     Interview_Get_Usecase,
     Interview_GetAll_Usecase,
     ComformForInterview_Usecase,
+    Interview_GetAllFromEmail_Usecase,
 
     // Auth
     Applicant_Signup_Usecase,

@@ -11,8 +11,14 @@ export const Application_GetAll_Usecase = (dependencies: DependeniciesData) => {
         console.log('The Application repository should exist in dependencies');
     }
 
-    const execute = (recruiterId: string) => {
-        return applicationRepository.getAll(recruiterId);
+    const execute = (id: string, forwho: string) => {
+        console.log("id :", id )
+        console.log("forwho :", forwho )
+        if(forwho == "career") {
+            return applicationRepository.getAll(id);
+        } else {
+            return applicationRepository.getAllForApplicant(id);
+        }
     };
 
     return {

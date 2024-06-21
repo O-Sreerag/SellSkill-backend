@@ -21,6 +21,7 @@ interface ApplicationDoc extends Document {
     skill_set?: string[];
     qualifications?: string[];
     resume?: string;
+    status?: string;
 }
 
 export const ApplicationSchema: Schema<ApplicationDoc> = new mongoose.Schema(
@@ -57,7 +58,7 @@ export const ApplicationSchema: Schema<ApplicationDoc> = new mongoose.Schema(
         },
         gender: {
             type: String,
-            enum: ['fulltime', 'parttime', 'contract'],
+            enum: ['male', 'female', 'other'],
             required: true,
         },
         current_location: {
@@ -104,5 +105,9 @@ export const ApplicationSchema: Schema<ApplicationDoc> = new mongoose.Schema(
             type: String,
             required: true,
         },
+        status: {
+            type: String,
+            default: "normal"
+        }
     }
 );

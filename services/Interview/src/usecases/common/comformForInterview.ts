@@ -29,7 +29,7 @@ export const ComformForInterview_Usecase = (dependencies: DependeniciesData) => 
       );
       console.log("email, interviewId, job_type, role");
       console.log(email, interviewId, job_type, role);
-
+      
       return interviewRepository.comformForInterview({ email, interviewId, job_type, role, }) 
     } catch (error) {
       console.error("An error occurred in the execute function:", error);

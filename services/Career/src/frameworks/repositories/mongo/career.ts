@@ -9,7 +9,7 @@ const Career = mongoose.model(entityName, CareerSchema);
 const generateCareerURL = (postingTitle: string, id: string): string => {
     const jobTitleParam = encodeURIComponent(postingTitle);
     const idParam = encodeURIComponent(id);
-    return `http://localhost:5173/applicant/career?pos=${jobTitleParam}&id=${idParam}`;
+    return `http://localhost:5173/home?pos=${jobTitleParam}&id=${idParam}`;
 };
 
 const careerRepository = {
@@ -36,6 +36,10 @@ const careerRepository = {
     getAll: async (recruiterId: string) => {
         console.log("Fetching all careers");
         return Career.find({ recruiterId });
+    },
+    getAllForApplicant: async (careerIds: string[]) => {
+        console.log("Fetching all careers for applicant");
+        return Career.find({ _id: { $in: careerIds } });
     }
 };
 

@@ -50,6 +50,7 @@ export const RecruiterSchema: Schema<RecruiterDoc> = new mongoose.Schema(
     },
     status: {
       type: Boolean,
+      default: false,
     },
     isGoogle: {
       type: Boolean,

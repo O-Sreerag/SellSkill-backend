@@ -12,6 +12,8 @@ export interface InterviewData {
     time?: string;
     duration?: string;
     comformedEmails?: string[];
+    conformStatusOnApplicant?: string;
+    conformStatusOnRecruiter?: string;
 }
 
 export class Interview {
@@ -28,6 +30,8 @@ export class Interview {
     time?: string;
     duration?: string;
     comformedEmails?: string[];
+    conformStatusOnApplicant?: string;
+    conformStatusOnRecruiter?: string;
     
     constructor({
         _id,
@@ -43,6 +47,8 @@ export class Interview {
         time,
         duration,
         comformedEmails,
+        conformStatusOnApplicant,
+        conformStatusOnRecruiter,
     }: InterviewData) {
         this._id = _id;
         this.recruiterId = recruiterId;
@@ -57,5 +63,7 @@ export class Interview {
         this.time = time;
         this.duration = duration;
         this.comformedEmails = comformedEmails;
+        this.conformStatusOnApplicant = conformStatusOnApplicant;
+        this.conformStatusOnRecruiter = conformStatusOnRecruiter;
     }
 }

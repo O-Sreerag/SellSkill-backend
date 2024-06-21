@@ -9,7 +9,7 @@ export = (dependencies: DependeniciesData) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log("Create application controller");
+            console.log("Update application controller");
 
             const {
                 body = {},
@@ -21,7 +21,7 @@ export = (dependencies: DependeniciesData) => {
             const result = await Application_Update_Usecase(dependencies).execute(id, applicationData);
             console.log(result);
 
-            res.status(200).json({ message: "Application created successfully", result });
+            res.status(200).json({ message: "Application updated successfully", result });
             next();
         } catch (err) {
             next(err);

@@ -1,3 +1,8 @@
+export interface CareerData {
+    id: string;
+    status: string;
+}
+
 export interface ApplicantData {
     _id?: string;
     name?: string;
@@ -5,13 +10,20 @@ export interface ApplicantData {
     password: string;
     image?: string;
     phoneNo?: number;
-    applications?: string;
+    applications?: string[];
     events?: string;
     verified?: boolean;
     status?: boolean;
     isGoogle: boolean;
+    profile?: {
+        fullName: string;
+        age: string;
+        gender: string;
+        country: string;
+        region: string;
+    };
+    careers?: CareerData[];
 }
-
 
 export interface ApplicantLoginData {
     email: string;
@@ -26,12 +38,20 @@ export class Applicant {
     password: string;
     image?: string;
     phoneNo?: number;
-    applications?: string;
+    applications?: string[];
     events?: string;
     verified?: boolean;
     status?: boolean;
     isGoogle: boolean;
-    
+    profile?: {
+        fullName: string;
+        age: string;
+        gender: string;
+        country: string;
+        region: string;
+    };
+    careers?: CareerData[];
+
     constructor({
         _id,
         name,
@@ -43,7 +63,9 @@ export class Applicant {
         events,
         verified,
         status,
-        isGoogle
+        isGoogle,
+        profile,
+        careers,
     }: ApplicantData) {
         this._id = _id
         this.name = name
@@ -56,5 +78,7 @@ export class Applicant {
         this.verified = verified
         this.status = status
         this.isGoogle = isGoogle
+        this.profile = profile
+        this.careers = careers
     }
 }

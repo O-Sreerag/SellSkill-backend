@@ -19,6 +19,7 @@ export interface ApplicationData {
     skill_set?: string[];
     qualifications?: string[];
     resume?: string;
+    status?: string;
 }
 
 export class Application {
@@ -42,6 +43,7 @@ export class Application {
     skill_set?: string[];
     qualifications?: string[];
     resume?: string;
+    status?: string;
 
     constructor({
         _id,
@@ -64,6 +66,7 @@ export class Application {
         skill_set,
         qualifications,
         resume,
+        status,
 
     }: ApplicationData) {
         this._id = _id;
@@ -86,5 +89,6 @@ export class Application {
         this.skill_set = skill_set;
         this.qualifications = qualifications;
         this.resume = resume;
+        this.status = status;
     }
 }

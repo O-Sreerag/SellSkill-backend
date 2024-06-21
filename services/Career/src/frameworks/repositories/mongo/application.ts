@@ -24,10 +24,18 @@ const applicationRepository = {
         console.log(`Fetching application with ID: ${id}`);
         return Application.findById(id);
     },
-    getAll: async (careerId: string) => {
+    getAll: async (id: string) => {
         console.log("Fetching all applications");
-        return Application.find({careerId});
-    }
+        return Application.find({id});
+    },
+    getAllForApplicant: async (id: string) => {
+        console.log("Fetching all applications");
+        return Application.find({ applicantId: id });
+    },
+    changeStatus: async (applicationId: string, status: string) => {
+        console.log("Fetching all applications");
+        return Application.findByIdAndUpdate(applicationId, { status: status }, { new: true });
+    },
 };
 
 export default applicationRepository;

@@ -9,11 +9,22 @@ import { LoginStatus } from '../../../entities/interface';
 const entityName = "Recruiter";
 const Recruiter = mongoose.model(entityName, RecruiterSchema)
 
+const generateRecruiterUrl = (id: string): string => {
+    const idParam = encodeURIComponent(id);
+    return `http://localhost:5173/applicant/career?recruiterId=${idParam}`;
+};
+
 const repository = {
     add: async (recruiter: RecruiterData) => {
         console.log("creating recruiter in db repository function")
         const mongoObject = new Recruiter(recruiter);
+        const url = generateRecruiterUrl(mongoObject._id);
+        mongoObject.url = url;
         return mongoObject.save();
+    },
+    get: async (id: string) => {
+        console.log(`Fetching recruiter with ID: ${id}`);
+        return Recruiter.findById(id);
     },
     login: async ({ email, password }: RecruiterData): Promise<RecruiterData | LoginStatus> => {
         console.log("recruiter login repository function")
@@ -50,6 +61,16 @@ const repository = {
             await Recruiter.findByIdAndUpdate(user._id, { $set: { verified: true } });
             return true;
         }
+    },
+    getAll: async () => {
+        console.log("Fetching all recruiters");
+        return Recruiter.find({});
+    },
+    block: async (id: string) => {
+        console.log("Block applicant repository");
+        const user = await Recruiter.findOne({ _id: id});
+        const status = user?.status
+        return await Recruiter.findByIdAndUpdate(id, { $set: { status: !status }});
     }
 }
 

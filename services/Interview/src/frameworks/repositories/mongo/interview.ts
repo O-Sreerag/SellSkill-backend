@@ -29,6 +29,19 @@ const interviewRepository = {
         console.log("Fetching all interviews");
         return Interview.find({recruiterId});
     },
+    getAllFromEmail: async (email: string) => {
+        console.log("Fetching all interviews");
+        const query = {
+            $or: [
+                { host: email },
+                { candidate_email: email },
+                { team: email },
+                { candidates_emails: email }
+            ]
+        };
+    
+        return Interview.find(query);
+    },
     comformForInterview: async ({ email, interviewId, job_type, role, }: ComformForInterview) => {
         console.log("Comform for interview repository function");
         console.log(email, interviewId, job_type, role)
@@ -42,7 +55,7 @@ const interviewRepository = {
             return true;
         }
     }
-
+    
 };
 
 export default interviewRepository;

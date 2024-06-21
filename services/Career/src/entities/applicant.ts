@@ -1,3 +1,8 @@
+export interface CareerData {
+    id: string;
+    status: string;
+}
+
 export interface ApplicantData {
     _id?: string;
     name?: string;
@@ -10,6 +15,7 @@ export interface ApplicantData {
     verified?: boolean;
     status?: boolean;
     isGoogle: boolean;
+    careers?:  CareerData[];
 }
 
 export class Applicant {
@@ -24,6 +30,7 @@ export class Applicant {
     verified?: boolean;
     status?: boolean;
     isGoogle: boolean;
+    careers?:  CareerData[];
     
     constructor({
         _id,
@@ -36,7 +43,8 @@ export class Applicant {
         events,
         verified,
         status,
-        isGoogle
+        isGoogle,
+        careers,
     }: ApplicantData) {
         this._id = _id
         this.name = name
@@ -49,5 +57,6 @@ export class Applicant {
         this.verified = verified
         this.status = status
         this.isGoogle = isGoogle
+        this.careers = careers
     }
 }

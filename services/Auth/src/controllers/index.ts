@@ -1,7 +1,8 @@
 // src/controllers/index.ts
 
+import adminControllers from './admin';
 import recruiterControllers from './recruiter';
 import commonControllers from './common';
-import applicantControllers from './applicant'
+import applicantControllers from './applicant';
 
-export { recruiterControllers, commonControllers, applicantControllers };
+export { adminControllers, recruiterControllers, commonControllers, applicantControllers };

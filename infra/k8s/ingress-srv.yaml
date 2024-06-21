@@ -37,3 +37,17 @@ spec:
                 name: interview-srv
                 port:
                   number: 3002
+          - path: /chat/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: chat-srv
+                port:
+                  number: 3004
+          - path: /socket.io/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: chat-srv
+                port:
+                  number: 3004

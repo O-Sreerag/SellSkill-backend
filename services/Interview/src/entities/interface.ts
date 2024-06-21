@@ -12,13 +12,16 @@ export interface DependeniciesData {
         get: (id: string) => Promise<any>;
         getAll: (recruiterId: string) => Promise<any>;
         comformForInterview: ({ email, job_type, interviewId, role }: ComformForInterview) => Promise<any>;
+        getAllFromEmail: (email: string) => Promise<any>;
     };
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
+        get: (id: string) => Promise<any>;
         verifyUser({email}: VerifyUser): any
     };
     applicantRepository: {
         add(applicant: ApplicantData): any;
+        get: (id: string) => Promise<any>;
         verifyUser({email}: VerifyUser): any
     }
 }
@@ -42,6 +45,9 @@ export interface usecaseData {
     };
     ComformForInterview_Usecase: (dependencies: DependeniciesData) => {
         execute: (verificationData: string) => any;
+    };
+    Interview_GetAllFromEmail_Usecase: (dependencies: DependeniciesData) => {
+        execute: (email: string) => Promise<any>;
     };
 
     // Auth

@@ -5,6 +5,7 @@ import updateApplicationController from './updateApplication';
 import deleteApplicationController from './deleteApplication';
 import getApplicationController from './getApplication';
 import getAllApplicationsController from './getAllApplications';
+import changeStatusController from './changeStatus';
 
 export = (dependencies: any) => {
     return {
@@ -13,6 +14,6 @@ export = (dependencies: any) => {
         deleteApplicationController: deleteApplicationController(dependencies),
         getApplicationController: getApplicationController(dependencies),
         getAllApplicationsController: getAllApplicationsController(dependencies),
-
+        changeStatusController: changeStatusController(dependencies),
     }
 }
