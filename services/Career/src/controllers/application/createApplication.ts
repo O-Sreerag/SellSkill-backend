@@ -28,16 +28,15 @@ export = (dependencies: DependeniciesData) => {
 
             console.log("career")
             console.log(career)
+            const careerResult = await Career_Get_Usecase(dependencies).execute(career)
+            console.log("careerResult:", careerResult)
+
             applicationData.careerId = career
 
             const result = await Application_Create_Usecase(dependencies).execute(applicationData);
             console.log(result);
 
-            const careerResult = await Career_Get_Usecase(dependencies).execute(career)
-            console.log("careerResult:", careerResult)
-
             const applicantsList = [...careerResult.applicants, applicant]
-
             // Update career document with the applicantId
             const careerUpdateResult = await Career_Update_Usecase(dependencies).execute(career, { applicants: applicantsList });
             console.log("Career update result:", careerUpdateResult);

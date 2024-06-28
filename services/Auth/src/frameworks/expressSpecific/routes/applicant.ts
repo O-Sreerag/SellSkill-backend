@@ -12,6 +12,8 @@ export = (dependencies: DependeniciesData) => {
         ApplicantsGetAllContoller,
         ApplicantBlockController,
         ApplicantGetController,
+        ApplicatUpdateController,
+        ApplicantGetByIdsController,
     } = applicantControllers(dependencies);
 
     const {
@@ -21,6 +23,8 @@ export = (dependencies: DependeniciesData) => {
 
     router.route('/signup').post(addApplicantController) //.delete(deleteApplicantController).put(updateApplicantController);
     router.route('/get').get(verifyTokenMiddleWare, ApplicantGetController)
+    router.route('/getByIds').get(verifyTokenMiddleWare, ApplicantGetByIdsController)
+    router.route('/update').post(verifyTokenMiddleWare, ApplicatUpdateController)
     // router.route('/:id').get(getApplicantByIdController);
     router.route('/getAll').get(verifyAdminTokenMiddleWare, ApplicantsGetAllContoller)
     router.route('/block').get(verifyAdminTokenMiddleWare, ApplicantBlockController)

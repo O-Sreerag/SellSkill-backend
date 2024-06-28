@@ -33,6 +33,7 @@ export interface DependeniciesData {
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
         get: (id: string) => Promise<any>;
+        update(id: string, recruiter: RecruiterData): any;
         login({ email, password }: RecruiterLoginData): any
         verifyUser({ email }: VerifyUser): any
         getAll: () => Promise<any>;
@@ -41,10 +42,12 @@ export interface DependeniciesData {
     applicantRepository: {
         add(applicant: ApplicantData): any;
         get: (id: string) => Promise<any>;
+        update(id: string, applicant: ApplicantData): any;
         login({ email, password }: ApplicantLoginData): any
         verifyUser({ email }: VerifyUser): any
         getAll: () => Promise<any>;
         block: (id: string) => Promise<any>;
+        getApplicantsByIds: (ids: string[]) => Promise<any>;
     }
     adminRepository: {
         login({ email, password }: AdminLoginData): any
@@ -73,6 +76,9 @@ export interface usecaseData {
     Recruiter_Get_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
     };
+    Recruiter_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, recruiter: RecruiterData) => Promise<any>;
+    };
     
 
     // applicant
@@ -90,6 +96,12 @@ export interface usecaseData {
     };
     Applicant_Get_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
+    };
+    Applicant_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, applicant: ApplicantData) => Promise<any>;
+    };
+    Applicant_GetByIds_Usecase: (dependencies: DependeniciesData) => {
+        execute: (ids: string[]) => Promise<any>;
     };
 
     // common

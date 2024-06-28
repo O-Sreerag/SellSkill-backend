@@ -22,6 +22,8 @@ import { Applicant_Get_Usecase } from "./auth/getApplicant";
 import { Recruiter_Signup_Usecase } from "./auth/addRecruiter";
 import { Recruiter_Get_Usecase } from "./auth/getRecruiter";
 import { VerifyUser_Usecase } from "./auth/verifyUser";
+import { Applicant_Update_Usecase } from "./auth/updateApplicant";
+import { Recruiter_Update_Usecase } from "./auth/updateRecruiter";
 
 export default {
     // Room
@@ -46,4 +48,6 @@ export default {
     Recruiter_Signup_Usecase,
     Recruiter_Get_Usecase,
     VerifyUser_Usecase,
+    Applicant_Update_Usecase,
+    Recruiter_Update_Usecase,
 }

@@ -17,11 +17,13 @@ export interface DependeniciesData {
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
         get: (id: string) => Promise<any>;
+        update(id: string, recruiter: RecruiterData): any;
         verifyUser({email}: VerifyUser): any
     };
     applicantRepository: {
         add(applicant: ApplicantData): any;
         get: (id: string) => Promise<any>;
+        update(id: string, applicant: ApplicantData): any;
         verifyUser({email}: VerifyUser): any
     }
 }
@@ -59,6 +61,12 @@ export interface usecaseData {
     };
     VerifyUser_Usecase: (dependencies: DependeniciesData) => {
         execute: ( verifyToken: string) => Promise<any>;
+    };
+    Applicant_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, applicant: ApplicantData) => Promise<any>;
+    };
+    Recruiter_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, recruiter: RecruiterData) => Promise<any>;
     };
 
     // common

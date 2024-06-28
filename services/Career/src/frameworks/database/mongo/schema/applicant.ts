@@ -66,7 +66,7 @@ export const ApplicantSchema: Schema<ApplicantDoc> = new mongoose.Schema(
     },
     careers: {
       type: [CareerSchema],
-    }
+    },
   },
   // {
   //   toJSON: {

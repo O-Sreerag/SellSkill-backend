@@ -107,7 +107,7 @@ export const ApplicationSchema: Schema<ApplicationDoc> = new mongoose.Schema(
         },
         status: {
             type: String,
-            default: "normal"
+            default: "pending"
         }
     }
 );

@@ -26,11 +26,13 @@ export interface DependeniciesData {
     recruiterRepository: {
         add(recruiter: RecruiterData): any;
         get: (id: string) => Promise<any>;
+        update(id: string, recruiter: RecruiterData): any;
         verifyUser({email}: VerifyUser): any
     };
     applicantRepository: {
         get: (id: string) => Promise<any>;
         add(applicant: ApplicantData): any;
+        update(id: string, applicant: ApplicantData): any;
         verifyUser({email}: VerifyUser): any
         getApplicants: (applicantIds: string[]) => Promise<any>;
         addCareer:(applicantId: string, careerId: string) => Promise<any>;
@@ -95,13 +97,17 @@ export interface usecaseData {
     Applicant_Get_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
     };
-    
-    // Applicant
     Applicant_AddCareer_Usecase: (dependencies: DependeniciesData) => { 
         execute: (aapplicantId: string, careerId: string) => Promise<any>;
     };
     Applicant_updateCareerStatus_Usecase: (dependencies: DependeniciesData) => { 
         execute: (applicantId: string, careerId: string, status: string) => Promise<any>;
+    };
+    Applicant_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, applicant: ApplicantData) => Promise<any>;
+    };
+    Recruiter_Update_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string, recruiter: RecruiterData) => Promise<any>;
     };
 
 }

@@ -1,29 +1,29 @@
 export interface ApplicantData {
     _id?: string;
     name?: string;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
     image?: string;
     phoneNo?: number;
     applications?: string;
     events?: string;
     verified?: boolean;
     status?: boolean;
-    isGoogle: boolean;
+    isGoogle?: boolean;
 }
 
 export class Applicant {
     _id?: string;
     name?: string;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
     image?: string;
     phoneNo?: number;
     applications?: string;
     events?: string;
     verified?: boolean;
     status?: boolean;
-    isGoogle: boolean;
+    isGoogle?: boolean;
     
     constructor({
         _id,

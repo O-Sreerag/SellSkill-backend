@@ -2,6 +2,10 @@ export interface ApplicationData {
     _id?: string;
     applicantId?: string;
     careerId?:string;
+    careerDetails?: {
+        posting_title?: string;
+        industry?: string;
+    }
     first_name?: string;
     last_name?: string;
     email?: string;
@@ -26,6 +30,10 @@ export class Application {
     _id?: string;
     applicantId?: string;
     careerId?:string;
+    careerDetails?: {
+        posting_title?: string;
+        industry?: string;
+    }
     first_name?: string;
     last_name?: string;
     email?: string;
@@ -49,6 +57,7 @@ export class Application {
         _id,
         applicantId,
         careerId,
+        careerDetails,
         first_name,
         last_name,
         email,
@@ -72,6 +81,7 @@ export class Application {
         this._id = _id;
         this.applicantId = applicantId;
         this.careerId = careerId;
+        this.careerDetails = careerDetails;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;

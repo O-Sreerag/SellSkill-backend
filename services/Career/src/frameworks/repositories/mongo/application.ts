@@ -26,7 +26,7 @@ const applicationRepository = {
     },
     getAll: async (id: string) => {
         console.log("Fetching all applications");
-        return Application.find({id});
+        return Application.find({careerId: id});
     },
     getAllForApplicant: async (id: string) => {
         console.log("Fetching all applications");

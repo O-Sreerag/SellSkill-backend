@@ -1,29 +1,29 @@
 export interface RecruiterData {
     _id?:string;
     name?: string;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
     phoneNo?: number;
     url?: string;
     jobRoles?: string[];
     profile?: string;
     verified?: boolean;
     status?: boolean;
-    isGoogle: boolean;
+    isGoogle?: boolean;
 }
 
 export class Recruiter {
     _id?:string;
     name?: string;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
     phoneNo?: number;
     url?: string;
     jobRoles?: string[];
     profile?: string;
     verified?: boolean;
     status?: boolean;
-    isGoogle: boolean;
+    isGoogle?: boolean;
     
     constructor({
         _id,

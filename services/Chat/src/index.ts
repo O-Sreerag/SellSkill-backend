@@ -8,6 +8,8 @@ import { ApplicantCreatedListener } from "./events/listener/applicantCreatedList
 import { RecruiterCreatedListener } from "./events/listener/recruiterCreatedListener";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { ApplicantStatusChangedListener } from "./events/listener/applicantStatusChangedListener";
+import { RecruiterStatusChangedListener } from "./events/listener/recruiterStatusChangedListener";
 
 config();
 
@@ -25,6 +27,8 @@ const start = async () => {
 
     new ApplicantCreatedListener(natsWrapper.client).listen();
     new RecruiterCreatedListener(natsWrapper.client).listen();
+    new ApplicantStatusChangedListener(natsWrapper.client).listen();
+    new RecruiterStatusChangedListener(natsWrapper.client).listen();
 
     connectDB();
   } catch (err) {

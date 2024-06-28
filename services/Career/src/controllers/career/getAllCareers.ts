@@ -22,8 +22,23 @@ export = (dependencies: DependeniciesData) => {
                 const applicant = await Applicant_Get_Usecase(dependencies).execute(recruiterId);
                 console.log("applicant")
                 console.log(applicant)
-                const careerIds = applicant?.careers
-                result = await Career_GetAllForApplicant_Usecase(dependencies).execute(careerIds);
+                const mergeCareersWithStatus = (applicant: any, careers: any[]) => {
+                    return applicant.careers.map((career: any) => {
+                        const careerDetails = careers.find((c: any) => c._id.toString() === career.id.toString());
+                        if (careerDetails) {
+                            return {
+                                status: career.status,
+                                career: {
+                                    ...careerDetails,
+                                }
+                            };
+                        }
+                        return null;
+                    }).filter((mergedCareer: any) => mergedCareer !== null); // Filter out any null values
+                };
+                const careerIds = applicant?.careers.map((career: any) => career.id.toString());
+                const resultInitial = await Career_GetAllForApplicant_Usecase(dependencies).execute(careerIds);
+                result = mergeCareersWithStatus(applicant, resultInitial);
             }
             console.log(result);
 

@@ -17,6 +17,10 @@ const repository = {
         console.log(`Fetching recruiter with ID: ${id}`);
         return Recruiter.findById(id);
     },
+    update: async (id: string, recruiter: RecruiterData) => {
+        console.log(`Updating recruiter with ID: ${id}`);
+        return Recruiter.findByIdAndUpdate(id, recruiter, { new: true });
+    },
     getById: async (id: string) => {
         console.log("get recruiter from db repository function by id")
         const recruiter = await Recruiter.find({ _id: id });

@@ -2,16 +2,22 @@ import mongoose from 'mongoose';
 import { ApplicantSchema } from '../../database/mongo/schema/applicant';
 import { ApplicantData } from '../../../entities/applicant';
 import { VerifyUser } from '../../../entities/common';
+import { CareerSchema } from '../../database/mongo/schema/career';
 
 // Schema
 const entityName = "Applicant";
 const Applicant = mongoose.model(entityName, ApplicantSchema)
+const Career = mongoose.model("career", CareerSchema)
 
 const repository = {
     add: async (applicant: ApplicantData) => {
         console.log("creating applicant in db")
         const mongoObject = new Applicant(applicant);
         return mongoObject.save();
+    },
+    update: async (id: string, applicant: ApplicantData) => {
+        console.log(`Updating applicant with ID: ${id}`);
+        return Applicant.findByIdAndUpdate(id, applicant, { new: true });
     },
     verifyUser: async ({ email }: VerifyUser) => {
         console.log("verifying User");
@@ -43,21 +49,16 @@ const repository = {
         if (!applicant) {
             return null
         }
-
-        if (applicant && applicant.careers) {
-            let careerExists = false;
-            for (let i = 0; i < applicant.careers.length; i++) {
-                if (applicant.careers[i].id === careerId) {
-                    careerExists = true;
-                    break;
-                }
-            }
+        if (applicant.careers) {
+            const careerExists = applicant.careers.some(career => career.id.toString() === careerId.toString());
             if (!careerExists) {
                 applicant.careers.push({ id: careerId, status: "default" });
             }
         } else {
             applicant.careers = [{ id: careerId, status: "default" }];
         }
+
+        const career = await Career.findById(careerId);
         return applicant.save();
     },
     get: async (id: string) => {
@@ -74,3 +75,18 @@ const repository = {
 }
 
 export default repository
+
+// if (applicant && applicant.careers) {
+//     let careerExists = false;
+//     for (let i = 0; i < applicant.careers.length; i++) {
+//         if (applicant.careers[i].id === careerId) {
+//             careerExists = true;
+//             break;
+//         }
+//     }
+//     if (!careerExists) {
+//         applicant.careers.push({ id: careerId, status: "default" });
+//     }
+// } else {
+//     applicant.careers = [{ id: careerId, status: "default" }];
+// }

@@ -18,6 +18,8 @@ import { Application_Delete_Usecase } from "./application/deleteApplication";
 import { Application_GetAll_Usecase } from "./application/getAllApplications";
 import { Application_Get_Usecase } from "./application/getApplication";
 import { Application_Update_Usecase } from "./application/updateApplication";
+import { Applicant_Update_Usecase } from "./auth/updateApplicant";
+import { Recruiter_Update_Usecase } from "./auth/updateRecruiter";
 
 // Applicant
 import { Applicant_AddCareer_Usecase } from "./applicant/createCareerInApplicant";
@@ -47,6 +49,8 @@ export default {
     Applicant_Signup_Usecase,
     Recruiter_Signup_Usecase,
     VerifyUser_Usecase,
+    Applicant_Update_Usecase,
+    Recruiter_Update_Usecase,
 
     // Applicant
     Applicant_AddCareer_Usecase,

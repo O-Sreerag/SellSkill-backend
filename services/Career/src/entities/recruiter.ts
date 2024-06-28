@@ -1,29 +1,36 @@
+// export interface ApplicantsData {
+//     id: string;
+//     status: string;
+// }
+
 export interface RecruiterData {
     _id?:string;
     name?: string;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
     phoneNo?: number;
     url?: string;
     jobRoles?: string[];
     profile?: string;
     verified?: boolean;
     status?: boolean;
-    isGoogle: boolean;
+    isGoogle?: boolean;
+    // applicants?:  ApplicantsData[];
 }
 
 export class Recruiter {
     _id?:string;
     name?: string;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
     phoneNo?: number;
     url?: string;
     jobRoles?: string[];
     profile?: string;
     verified?: boolean;
     status?: boolean;
-    isGoogle: boolean;
+    isGoogle?: boolean;
+    // applicants?:  ApplicantsData[];
     
     constructor({
         _id,
@@ -36,7 +43,8 @@ export class Recruiter {
         profile,
         verified,
         status,
-        isGoogle
+        isGoogle,
+        // applicants,
     }: RecruiterData) {
         this._id = _id
         this.name = name
@@ -49,5 +57,6 @@ export class Recruiter {
         this.verified = verified
         this.status = status
         this.isGoogle = isGoogle
+        // this.applicants = applicants
     }
 }

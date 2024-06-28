@@ -8,6 +8,8 @@ import { intPort } from "./config/port";
 import { config } from "dotenv";
 import { ApplicantCreatedListener } from "./events/listener/applicantCreatedListener";
 import { RecruiterCreatedListener } from "./events/listener/recruiterCreatedListener";
+import { ApplicantStatusChangedListener } from "./events/listener/applicantStatusChangedListener";
+import { RecruiterStatusChangedListener } from "./events/listener/recruiterStatusChangedListener";
 config()
 
 const start = async () => {
@@ -25,6 +27,8 @@ const start = async () => {
 
     new ApplicantCreatedListener(natsWrapper.client).listen();
     new RecruiterCreatedListener(natsWrapper.client).listen();
+    new ApplicantStatusChangedListener(natsWrapper.client).listen();
+    new RecruiterStatusChangedListener(natsWrapper.client).listen();
     connectDB();
   } catch (err) {
     console.error(err);

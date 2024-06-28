@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sellskill/common": "^1.0.3",
+    "@sellskill/common": "^1.0.4",
     "@types/express": "^4.17.21",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",

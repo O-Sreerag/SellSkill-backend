@@ -19,6 +19,14 @@ const repository = {
         console.log(`Fetching applicant with ID: ${id}`);
         return Applicant.findById(id);
     },
+    getApplicantsByIds: async (ids: string[]) => {
+        console.log(`Fetching applicants with IDs: ${ids}`);
+        return Applicant.find({ _id: { $in: ids } });
+    },
+    update: async (id: string, applicant: ApplicantData) => {
+        console.log(`Updating applicant with ID: ${id}`);
+        return Applicant.findByIdAndUpdate(id, applicant, { new: true });
+    },
     login: async ({ email, password }: ApplicantData): Promise<ApplicantData | LoginStatus> => {
         console.log("applicant login repository function")
         const loginedUser: any = await Applicant.findOne({ email });

@@ -22,6 +22,10 @@ const repository = {
         mongoObject.url = url;
         return mongoObject.save();
     },
+    update: async (id: string, recruiter: RecruiterData) => {
+        console.log(`Updating recruiter with ID: ${id}`);
+        return Recruiter.findByIdAndUpdate(id, recruiter, { new: true });
+    },
     get: async (id: string) => {
         console.log(`Fetching recruiter with ID: ${id}`);
         return Recruiter.findById(id);
