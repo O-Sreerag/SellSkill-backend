@@ -21,7 +21,7 @@ const start = async () => {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
-    connectDB();
+    connectDB(); 
   } catch (err) {
     console.error(err);
   }

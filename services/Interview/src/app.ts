@@ -9,4 +9,4 @@ app.set('trust-proxy',true)
 app.use(json())
 app.use("/interview", routes(dependencies)); 
 
-export { app };
+export { app }; 
