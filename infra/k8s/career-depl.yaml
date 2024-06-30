@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: career
-    spec:
+    spec: 
       containers:
         - name: career
           image: sreerago/career
