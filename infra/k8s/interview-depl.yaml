@@ -15,6 +15,39 @@ spec:
       containers:
         - name: interview
           image: sreerago/interview
+          env:
+            - name: MONGO_URL
+              value: 'mongodb://interview-mongo-srv:27017/interview'
+            - name: JWT_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-access-secret
+                  key: JWT_ACCESS_SECRET
+            - name: NODEMAILER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nodemailer-password
+                  key: NODEMAILER_PASSWORD
+            - name: NODEMAILER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: nodemailer-email
+                  key: NODEMAILER_EMAIL
+            - name: CRYPTO_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crypto-key
+                  key: CRYPTO_KEY
+            - name: ZEGOCLOUD_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: zegocloud-app-id
+                  key: ZEGOCLOUD_APP_ID
+            - name: ZEGOCLOUD_SERVER_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: zegocloud-server-secret
+                  key: ZEGOCLOUD_SERVER_SECRET
 ---
 apiVersion: v1
 kind: Service

@@ -15,6 +15,14 @@ spec:
       containers:
         - name: career
           image: sreerago/career
+          env:
+            - name: MONGO_URL
+              value: 'mongodb://career-mongo-srv:27017/career'
+            - name: JWT_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-access-secret
+                  key: JWT_ACCESS_SECRET
 ---
 apiVersion: v1
 kind: Service

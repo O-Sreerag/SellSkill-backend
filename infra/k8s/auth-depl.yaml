@@ -15,6 +15,29 @@ spec:
       containers:
         - name: auth
           image: sreerago/auth
+          env:
+            - name: MONGO_URL
+              value: 'mongodb://auth-mongo-srv:27017/auth'
+            - name: JWT_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-access-secret
+                  key: JWT_ACCESS_SECRET
+            - name: NODEMAILER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nodemailer-password
+                  key: NODEMAILER_PASSWORD
+            - name: NODEMAILER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: nodemailer-email
+                  key: NODEMAILER_EMAIL
+            - name: CRYPTO_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crypto-key
+                  key: CRYPTO_KEY
 ---
 apiVersion: v1
 kind: Service

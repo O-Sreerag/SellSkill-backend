@@ -15,6 +15,14 @@ spec:
       containers:
         - name: chat
           image: sreerago/chat
+          env:
+            - name: MONGO_URL
+              value: 'mongodb://chat-mongo-srv:27017/chat'
+            - name: JWT_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-access-secret
+                  key: JWT_ACCESS_SECRET
 ---
 apiVersion: v1
 kind: Service
