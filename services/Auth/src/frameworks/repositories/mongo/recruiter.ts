@@ -11,7 +11,7 @@ const Recruiter = mongoose.model(entityName, RecruiterSchema)
 
 const generateRecruiterUrl = (id: string): string => {
     const idParam = encodeURIComponent(id);
-    return `http://localhost:5173/applicant/career?recruiterId=${idParam}`;
+    return `http://sellskill.online/applicant/career?recruiterId=${idParam}`;
 };
 
 const repository = {
