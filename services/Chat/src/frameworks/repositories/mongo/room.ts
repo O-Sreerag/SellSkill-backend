@@ -9,6 +9,18 @@ const Room = mongoose.model(entityName, RoomSchema);
 const roomRepository = {
     create: async (roomData: RoomData) => {
         console.log("Creating room in database");
+
+        // Check if the room already exists
+        const existingRoom = await Room.findOne({
+            $or: [
+                { user1Id: roomData.user1Id, user2Id: roomData.user2Id },
+                { user1Id: roomData.user2Id, user2Id: roomData.user1Id }
+            ]
+        });
+        if (existingRoom) {
+            return existingRoom;
+        }
+
         const room = new Room(roomData);
         return room.save();
     },
