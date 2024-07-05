@@ -8,6 +8,7 @@ import { Recruiter_GetAll_Usecase } from "./recruiter/getAllRecruiters";
 import { Recruiter_Block_Usecase } from "./recruiter/blockRecruiter";
 import { Recruiter_Get_Usecase } from "./recruiter/getRecruiter";
 import { Recruiter_Update_Usecase } from "./recruiter/updateRecruiter";
+import { Recruiter_GetProfile_Usecase } from "./recruiter/getProfileRecruiter";
 
 import { Applicant_Signup_Usecase } from "./applicant/addApplicant";
 import { Applicant_Login_Usecase } from "./applicant/loginApplicant";
@@ -29,6 +30,7 @@ export default {
     Recruiter_Block_Usecase,
     Recruiter_Get_Usecase,
     Recruiter_Update_Usecase,
+    Recruiter_GetProfile_Usecase,
 
     Applicant_Signup_Usecase,
     Applicant_Login_Usecase,

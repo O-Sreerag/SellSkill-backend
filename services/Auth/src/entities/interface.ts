@@ -1,7 +1,7 @@
 // src/entities/interfaces
 
 import { ApplicantData, ApplicantLoginData } from "./applicant";
-import { RecruiterData, RecruiterLoginData } from "./recruiter";
+import { Recruiter, RecruiterData, RecruiterLoginData } from "./recruiter";
 import { AdminLoginData } from "./admin";
 import { VerifyUser } from "./user";
 
@@ -38,6 +38,7 @@ export interface DependeniciesData {
         verifyUser({ email }: VerifyUser): any
         getAll: () => Promise<any>;
         block: (id: string) => Promise<any>;
+        getProfile: (id: string) => Promise<any>;
     };
     applicantRepository: {
         add(applicant: ApplicantData): any;
@@ -78,6 +79,9 @@ export interface usecaseData {
     };
     Recruiter_Update_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string, recruiter: RecruiterData) => Promise<any>;
+    };
+    Recruiter_GetProfile_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string) => Promise<any>;
     };
     
 

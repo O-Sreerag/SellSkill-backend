@@ -30,6 +30,11 @@ const repository = {
         console.log(`Fetching recruiter with ID: ${id}`);
         return Recruiter.findById(id);
     },
+    getProfile: async (id: string) => {
+        console.log(`Fetching recruiter profile with ID: ${id}`);
+        const recruiter = await Recruiter.findById(id);
+        return recruiter?.profile
+    },
     login: async ({ email, password }: RecruiterData): Promise<RecruiterData | LoginStatus> => {
         console.log("recruiter login repository function")
         const loginedUser: any = await Recruiter.findOne({ email });

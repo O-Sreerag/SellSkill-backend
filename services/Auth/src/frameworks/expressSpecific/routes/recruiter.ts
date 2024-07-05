@@ -13,6 +13,7 @@ export = (dependencies: DependeniciesData) => {
         RecruiterBlockController,
         RecruiterGetController,
         RecruiterUpdateController,
+        RecruiterGetProfileController,
     } = recruiterControllers(dependencies);
 
     const {
@@ -23,6 +24,7 @@ export = (dependencies: DependeniciesData) => {
     router.route('/signup').post(addRecruiterController) //.delete(deleteRecruiterController).put(updateRecruiterController);
     router.route('/get').get(verifyTokenMiddleWare, RecruiterGetController)
     router.route('/update').post(verifyTokenMiddleWare, RecruiterUpdateController)
+    router.route('/getProfile').get(verifyAdminTokenMiddleWare, RecruiterGetProfileController)
     router.route('/getAll').get(verifyAdminTokenMiddleWare, RecruitersGetAllContoller)
     router.route('/block').get(verifyAdminTokenMiddleWare, RecruiterBlockController)
 
