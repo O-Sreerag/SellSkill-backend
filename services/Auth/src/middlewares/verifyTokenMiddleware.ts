@@ -46,6 +46,8 @@ const verifyTokenAndEmail = async (req: any, res: any, next: NextFunction) => {
         if(user && user?.status == true) {
             console.log("user block status is true")
             return res.status(403).json({ message: 'User is blocked' });
+        } else {
+            console.log("user is not blocked")
         }
 
         next();
