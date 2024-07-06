@@ -6,6 +6,7 @@ import ApplicantBlockController from './blockApplicant'
 import ApplicantGetController from './getApplicant'
 import ApplicatUpdateController from './updateApplicant'
 import ApplicantGetByIdsController from './getByIds'
+import ApplicantCheckBlockStatusController from './checkBlockStatus'
 
 export = (dependencies: any) => {
     return {
@@ -15,5 +16,6 @@ export = (dependencies: any) => {
         ApplicantGetController: ApplicantGetController(dependencies),
         ApplicatUpdateController: ApplicatUpdateController(dependencies),
         ApplicantGetByIdsController: ApplicantGetByIdsController(dependencies),
+        ApplicantCheckBlockStatusController: ApplicantCheckBlockStatusController(dependencies),
     }
 }

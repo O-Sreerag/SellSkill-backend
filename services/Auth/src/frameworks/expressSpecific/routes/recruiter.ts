@@ -14,6 +14,7 @@ export = (dependencies: DependeniciesData) => {
         RecruiterGetController,
         RecruiterUpdateController,
         RecruiterGetProfileController,
+        RecruiterCheckBlockStatusController,
     } = recruiterControllers(dependencies);
 
     const {
@@ -27,6 +28,7 @@ export = (dependencies: DependeniciesData) => {
     router.route('/getProfile').get(verifyAdminTokenMiddleWare, RecruiterGetProfileController)
     router.route('/getAll').get(verifyAdminTokenMiddleWare, RecruitersGetAllContoller)
     router.route('/block').get(verifyAdminTokenMiddleWare, RecruiterBlockController)
+    router.route('/checkBlock').get(RecruiterCheckBlockStatusController)
 
     return router;
 }

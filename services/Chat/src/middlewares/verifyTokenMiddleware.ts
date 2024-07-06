@@ -37,9 +37,9 @@ const verifyTokenAndEmail = async (req: any, res: any, next: NextFunction) => {
 
         let user
         if(decoded?._id && decoded?.role == "recruiter") {
-            user = await recruiterRepository.get(decoded.id);
+            user = await recruiterRepository.get(decoded._id);
         } else if(decoded?._id && decoded?.role == "applicant") {
-            user = await applicantRepository.get(decoded.id);
+            user = await applicantRepository.get(decoded._id);
         }
 
         if(user && user?.status == true) {

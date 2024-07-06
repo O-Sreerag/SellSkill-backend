@@ -38,6 +38,7 @@ export interface DependeniciesData {
         verifyUser({ email }: VerifyUser): any
         getAll: () => Promise<any>;
         block: (id: string) => Promise<any>;
+        checkBlock: (id: string) => any;
         getProfile: (id: string) => Promise<any>;
     };
     applicantRepository: {
@@ -48,6 +49,7 @@ export interface DependeniciesData {
         verifyUser({ email }: VerifyUser): any
         getAll: () => Promise<any>;
         block: (id: string) => Promise<any>;
+        checkBlock: (id: string) => any;
         getApplicantsByIds: (ids: string[]) => Promise<any>;
     }
     adminRepository: {
@@ -74,6 +76,9 @@ export interface usecaseData {
     Recruiter_Block_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
     };
+    Recruiter_CheckBlock_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string) => any;
+    };
     Recruiter_Get_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
     };
@@ -83,6 +88,7 @@ export interface usecaseData {
     Recruiter_GetProfile_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
     };
+    
     
 
     // applicant
@@ -97,6 +103,9 @@ export interface usecaseData {
     };
     Applicant_Block_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;
+    };
+    Applicant_CheckBlock_Usecase: (dependencies: DependeniciesData) => {
+        execute: (id: string) => any;
     };
     Applicant_Get_Usecase: (dependencies: DependeniciesData) => {
         execute: (id: string) => Promise<any>;

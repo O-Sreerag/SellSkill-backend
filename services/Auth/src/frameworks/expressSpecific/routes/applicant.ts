@@ -14,6 +14,7 @@ export = (dependencies: DependeniciesData) => {
         ApplicantGetController,
         ApplicatUpdateController,
         ApplicantGetByIdsController,
+        ApplicantCheckBlockStatusController,
     } = applicantControllers(dependencies);
 
     const {
@@ -28,6 +29,7 @@ export = (dependencies: DependeniciesData) => {
     // router.route('/:id').get(getApplicantByIdController);
     router.route('/getAll').get(verifyAdminTokenMiddleWare, ApplicantsGetAllContoller)
     router.route('/block').get(verifyAdminTokenMiddleWare, ApplicantBlockController)
+    router.route('/checkBlock').get(ApplicantCheckBlockStatusController)
 
     return router;
 }

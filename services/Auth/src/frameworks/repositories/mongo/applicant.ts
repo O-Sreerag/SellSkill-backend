@@ -74,6 +74,12 @@ const repository = {
         const status = user?.status
         return await Applicant.findByIdAndUpdate(id, { $set: { status: !status }});
     },
+    checkBlock:  async (id: string) => {
+        console.log("check Block status applicant repository");
+        const user = await Applicant.findOne({ _id: id});
+        const status = user?.status
+        return status
+    },
 }
 
 export default repository

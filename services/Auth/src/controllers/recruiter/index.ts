@@ -6,6 +6,7 @@ import RecruiterBlockController from './blockRecruiter'
 import RecruiterGetController from './getRecruiter'
 import RecruiterUpdateController from './updateRecruiter'
 import RecruiterGetProfileController from './getRecruiterProfile' 
+import RecruiterCheckBlockStatusController from './checkBlockStatus'
 
 export = (dependencies: any) => {
     return {
@@ -15,5 +16,6 @@ export = (dependencies: any) => {
         RecruiterGetController: RecruiterGetController(dependencies),
         RecruiterUpdateController: RecruiterUpdateController(dependencies),
         RecruiterGetProfileController: RecruiterGetProfileController(dependencies),
+        RecruiterCheckBlockStatusController: RecruiterCheckBlockStatusController(dependencies),
     }
 }

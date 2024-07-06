@@ -80,7 +80,13 @@ const repository = {
         const user = await Recruiter.findOne({ _id: id});
         const status = user?.status
         return await Recruiter.findByIdAndUpdate(id, { $set: { status: !status }});
-    }
+    },
+    checkBlock:  async (id: string) => {
+        console.log("check Block status recruiter repository");
+        const user = await Recruiter.findOne({ _id: id});
+        const status = user?.status
+        return status
+    },
 }
 
 export default repository
