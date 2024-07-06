@@ -6,7 +6,7 @@ import dependencies from "../../config/dependencies";
 export class ApplicantStatusChangedListener extends Listener<ApplicantStatusChangedEvent> {
     
   subject: Subjects.ApplicantStatusChanged = Subjects.ApplicantStatusChanged;
-  queueGroupName = "chat";
+  queueGroupName = "career";
 
   async onMessage(data: ApplicantStatusChangedEvent["data"], msg: Message) {
     const { _id, status } = data;
