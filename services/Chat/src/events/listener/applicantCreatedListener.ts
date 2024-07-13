@@ -13,7 +13,7 @@ export class ApplicantCreatedListener extends Listener<ApplicantCreatedEvent> {
     console.log("Event data! recieved in CAREER service: ",  _id, name, email, password, isGoogle, verified, status)
 
     try {
-        const savedApplicant = Applicant_Signup_Usecase(dependencies).execute({ _id, name, email, password, isGoogle, verified, status})        
+        const savedApplicant = await Applicant_Signup_Usecase(dependencies).execute({ _id, name, email, password, isGoogle, verified, status})        
         console.log("applicant saved in CAREER service", savedApplicant)
 
         msg.ack();
