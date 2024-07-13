@@ -42,7 +42,7 @@ const repository = {
         if (!user){
             return false;
         } else {
-            await Recruiter.findByIdAndUpdate(user._id, { $set: { verified: true } });
+            await Recruiter.findByIdAndUpdate(user._id, { $set: { verified: true } }, { new: true });
             return true;
         }
     }

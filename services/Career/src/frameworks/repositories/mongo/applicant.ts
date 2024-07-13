@@ -29,7 +29,7 @@ const repository = {
             return false;
         }
         else {
-            await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } });
+            await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } }, { new: true });
             return true;
         }
     },

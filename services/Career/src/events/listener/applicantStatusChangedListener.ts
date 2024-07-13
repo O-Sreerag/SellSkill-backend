@@ -15,7 +15,7 @@ export class ApplicantStatusChangedListener extends Listener<ApplicantStatusChan
 
     try {
         if(_id) {
-            const savedApplicant = Applicant_Update_Usecase(dependencies).execute( _id, {status : gotStatus})    
+            const savedApplicant = await Applicant_Update_Usecase(dependencies).execute( _id, {status : gotStatus})    
             console.log("applicant status changed in CAREER service", savedApplicant)
         }
 

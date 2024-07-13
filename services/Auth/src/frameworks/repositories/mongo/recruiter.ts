@@ -67,7 +67,7 @@ const repository = {
         if (!user){
             return false;
         } else {
-            await Recruiter.findByIdAndUpdate(user._id, { $set: { verified: true } });
+            await Recruiter.findByIdAndUpdate(user._id, { $set: { verified: true } }, { new: true });
             return true;
         }
     },
@@ -76,10 +76,10 @@ const repository = {
         return Recruiter.find({});
     },
     block: async (id: string) => {
-        console.log("Block applicant repository");
+        console.log("Block recruiter repository");
         const user = await Recruiter.findOne({ _id: id});
         const status = user?.status
-        return await Recruiter.findByIdAndUpdate(id, { $set: { status: !status }});
+        return await Recruiter.findByIdAndUpdate(id, { $set: { status: !status }}, { new: true });
     },
     checkBlock:  async (id: string) => {
         console.log("check Block status recruiter repository");

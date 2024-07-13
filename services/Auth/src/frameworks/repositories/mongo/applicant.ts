@@ -60,7 +60,7 @@ const repository = {
             return false;
         }
         else {
-            await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } });
+            await Applicant.findByIdAndUpdate(user._id, { $set: { verified: true } }, { new: true });
             return true;
         }
     },
@@ -72,7 +72,7 @@ const repository = {
         console.log("Block applicant repository");
         const user = await Applicant.findOne({ _id: id});
         const status = user?.status
-        return await Applicant.findByIdAndUpdate(id, { $set: { status: !status }});
+        return await Applicant.findByIdAndUpdate(id, { $set: { status: !status }}, { new: true });
     },
     checkBlock:  async (id: string) => {
         console.log("check Block status applicant repository");

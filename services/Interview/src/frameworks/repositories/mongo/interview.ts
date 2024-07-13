@@ -51,7 +51,7 @@ const interviewRepository = {
         if (!interview){
             return false;
         } else {
-            await Interview.findByIdAndUpdate(interview._id, { $push: { comformedEmails: email } });
+            await Interview.findByIdAndUpdate(interview._id, { $push: { comformedEmails: email } }, { new: true });
             return true;
         }
     }
