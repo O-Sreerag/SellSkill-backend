@@ -13,7 +13,7 @@ metadata:
     nginx.ingress.kubernetes.io/cross-origin-opener-policy: "same-origin"
 spec:
   rules:
-    - host: server.sellskill.online
+    - host: sellskill.zapto.org
       http:
         paths:
           - path: /auth/?(.*)
