@@ -15,7 +15,7 @@ config();
 
 const start = async () => {
   try {
-    await natsWrapper.connect("sellskill", "chat", "http://nats-srv:4222");
+    await natsWrapper.connect("sellskill", "chat", "http://nats-srv:4222"); 
 
     natsWrapper.client.on("close", () => {
       console.log("NATS connection closed!");
