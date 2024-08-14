@@ -22,7 +22,7 @@ const start = async () => {
     process.on("SIGTERM", () => natsWrapper.client.close());
 
     connectDB(); 
-  } catch (err) { 
+  } catch (err) {  
     console.error(err);
   }
 
