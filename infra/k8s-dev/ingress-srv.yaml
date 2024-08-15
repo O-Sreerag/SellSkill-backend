@@ -11,6 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-methods: "GET, PUT, POST, DELETE, OPTIONS"  
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,accesstoken"  # CORS Allow Headers setting
     nginx.ingress.kubernetes.io/cross-origin-opener-policy: "same-origin"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
 spec:
   rules:
     - host: sellskill.hawkinvoice.online
