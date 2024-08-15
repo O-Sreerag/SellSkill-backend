@@ -39,7 +39,7 @@ export = (dependencies: DependeniciesData) => {
                 password: user.password,
                 isGoogle: user.isGoogle,
                 verified: user?.verified || false,
-                status: user?.status || true,
+                status: user?.status || false,
             });
 
             res.status(200).json({ message: "Sign up successful, mail has send", user});

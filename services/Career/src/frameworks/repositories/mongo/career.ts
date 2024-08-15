@@ -9,7 +9,7 @@ const Career = mongoose.model(entityName, CareerSchema);
 const generateCareerURL = (postingTitle: string, id: string): string => {
     const jobTitleParam = encodeURIComponent(postingTitle);
     const idParam = encodeURIComponent(id);
-    return `http://sellskill.online/home?pos=${jobTitleParam}&id=${idParam}`;
+    return `http://sell-skill-frontend.vercel.app/home?pos=${jobTitleParam}&id=${idParam}`;
 };
 
 const careerRepository = {

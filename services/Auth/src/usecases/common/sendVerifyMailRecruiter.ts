@@ -24,7 +24,7 @@ export const SendVerificationMail_Usecase = (
       console.log(encodedData)
 
       const subject = "Confirm Your Email";
-      const verificationLink = `http://sellskill.online/verify-email?code=${encodedData}`;
+      const verificationLink = `http://sell-skill-frontend.vercel.app/verify-email?code=${encodedData}`;
 
       return sentMail(email, subject, verificationLink);
     } else {

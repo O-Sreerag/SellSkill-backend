@@ -30,7 +30,7 @@ export const SendVerificationMail_Usecase = (
       console.log("encodedData", encodedData)
 
       const subject = "Confirm Your Interview";
-      const verificationLink = `http://sellskill.online/interview/common/conform-for-interview?code=${encodedData}`;
+      const verificationLink = `http://sell-skill-frontend.vercel.app/interview/common/conform-for-interview?code=${encodedData}`;
       return sentMail(emailTemplateOption, email, subject, verificationLink, roomUrl, encodedData);
     }
 

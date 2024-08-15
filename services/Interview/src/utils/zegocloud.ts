@@ -35,6 +35,6 @@ export const generateRoomUrl = async (roomId: string, userId: string, userName: 
   const token = crypto.createHmac('sha256', serverSecret).update(payloadString).digest('hex');
   const roomIdReal = generateRoomId()
 
-  const roomUrl = `http://sellskill.online/lobby/join?roomID=${roomIdReal}&token=${token}&Id=${roomId}`;
+  const roomUrl = `http://sell-skill-frontend.vercel.app/lobby/join?roomID=${roomIdReal}&token=${token}&Id=${roomId}`;
   return roomUrl;
 };
