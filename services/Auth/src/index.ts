@@ -23,7 +23,7 @@ const start = async () => {
 
     connectDB(); 
   } catch (err) {
-    console.error(err);
+    console.error(err); 
   }
 
   app.listen(intPort, () => {
