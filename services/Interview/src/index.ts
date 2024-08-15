@@ -14,7 +14,7 @@ config()
 
 const start = async () => {
 
-  try { 
+  try {
     await natsWrapper.connect("sellskill", "interview", "http://nats-srv:4222");
 
     natsWrapper.client.on("close", () => {
